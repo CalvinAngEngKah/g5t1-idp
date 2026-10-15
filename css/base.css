@@ -1,0 +1,176 @@
+/**
+ * Savenow Base Stylesheet
+ * Reset, Edge-to-edge mobile viewport, typography, and screen transitions
+ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  font-family: var(--font-sans);
+  background-color: var(--sn-bg-canvas);
+  color: var(--sn-text-primary);
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+#app-viewport-wrapper {
+  width: 100%;
+  height: 100dvh;
+  display: flex;
+  background-color: var(--sn-bg-canvas);
+  position: relative;
+  overflow: hidden;
+}
+
+.mobile-app-root {
+  width: 100%;
+  height: 100dvh;
+  background-color: var(--sn-bg-canvas);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.app-micro-header {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  z-index: 90;
+  pointer-events: auto;
+}
+
+.theme-micro-toggle {
+  background: var(--sn-bg-card);
+  border: 1px solid var(--sn-border-strong);
+  color: var(--sn-text-secondary);
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 5px 10px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.16s ease;
+}
+
+.theme-micro-toggle:hover {
+  color: var(--sn-text-primary);
+  border-color: var(--sn-obsidian-900);
+}
+
+.theme-micro-toggle:active {
+  transform: scale(0.95);
+}
+
+.screens-viewport {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(25px);
+  transition: opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1), transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  background-color: var(--sn-bg-canvas);
+}
+
+.screen.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(0);
+}
+
+.screen.sliding-back {
+  transform: translateX(-25px);
+}
+
+.app-tab-screen {
+  padding: 16px 18px 84px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+.app-tab-screen::-webkit-scrollbar {
+  display: none;
+}
+
+.tab-page-title {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: var(--sn-text-primary);
+  margin-top: 4px;
+  margin-bottom: 2px;
+}
+
+.tab-page-subtitle {
+  font-size: 13.5px;
+  color: var(--sn-text-secondary);
+  margin-bottom: 18px;
+  font-weight: 500;
+}
+
+.date-period-pill {
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  background: var(--sn-bg-card);
+  border: 1.5px solid var(--sn-obsidian-900);
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+[data-theme="dark"] .date-period-pill {
+  border-color: #475569;
+}
+
+.screen-scrollable-body {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  padding: 18px 20px 12px;
+}
+
+.screen-scrollable-body::-webkit-scrollbar {
+  display: none;
+}
+
+.screen-footer-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 12px 20px max(18px, env(safe-area-inset-bottom, 16px));
+  background: var(--sn-bg-canvas);
+  border-top: 1px solid var(--sn-border-hairline);
+  flex-shrink: 0;
+  z-index: 40;
+}

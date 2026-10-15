@@ -1,0 +1,8 @@
+/**
+ * Screen: Setup Step 2 — Goal & Budget Stylesheet
+ */
+
+/* Scoped layout rules for goal & budget inputs */
+#screen-setup-2 .form-section-title {
+  margin-top: 14px;
+}

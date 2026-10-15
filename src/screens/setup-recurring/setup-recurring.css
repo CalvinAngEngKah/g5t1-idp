@@ -1,0 +1,195 @@
+/**
+ * Screen: Setup Step 3 — Recurring Expenses Stylesheet
+ */
+
+.recurring-day-calendar-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.recurring-day-box {
+  width: 76px;
+  margin-bottom: 0;
+}
+
+.day-helper-text {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--sn-text-secondary);
+  white-space: nowrap;
+}
+
+.recurring-cal-box {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+.category-dropdown-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  height: 24px;
+}
+
+.category-dropdown-value {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--sn-text-primary);
+}
+
+.expense-list-container {
+  background: var(--sn-bg-card);
+  border: 1.5px solid var(--sn-border-strong);
+  border-radius: var(--radius-lg);
+  padding: 14px;
+  position: relative;
+  min-height: 140px;
+  margin-top: 12px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.expense-list-container-label {
+  position: absolute;
+  top: -8px;
+  left: 12px;
+  background: var(--sn-bg-card);
+  padding: 0 6px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sn-text-secondary);
+}
+
+.empty-expense-state {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px 10px;
+}
+
+.empty-expense-title {
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--sn-text-primary);
+  margin-bottom: 4px;
+}
+
+.empty-expense-subtitle {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--sn-text-muted);
+}
+
+.recurring-expense-card {
+  border-bottom: 1.5px solid var(--sn-border-hairline);
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+.recurring-expense-card:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.recurring-main-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.rec-title {
+  font-size: 14.5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--sn-text-primary);
+}
+
+.rec-cat {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--sn-text-muted);
+}
+
+.rec-amount {
+  font-size: 15.5px;
+  font-weight: 800;
+  color: var(--sn-text-primary);
+  text-align: right;
+}
+
+.rec-freq {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--sn-text-secondary);
+  text-align: right;
+  text-transform: uppercase;
+}
+
+.rec-actions-row {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.rec-action-link {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--sn-text-primary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 3px 6px;
+  border-radius: 4px;
+}
+
+.rec-action-link.remove {
+  color: var(--sn-rose-600);
+}
+
+.swipe-hint-text {
+  text-align: center;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--sn-text-muted);
+  margin-bottom: 6px;
+}
+
+.category-select-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.category-option-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--sn-border-hairline);
+  background: var(--sn-bg-card);
+  cursor: pointer;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--sn-text-primary);
+}

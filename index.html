@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Savenow — Finance Made Easy</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0F172A">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  
+  <!-- Typography from Savenow Design System -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  
+  <!-- ==============================================================
+       MAZE A/B TESTING & USABILITY TRACKING INTEGRATION
+       Reads API key from localStorage or URL parameter (?mazeKey=...)
+       ============================================================== -->
+  <script>
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      var urlKey = params.get('mazeKey');
+      var storedKey = localStorage.getItem('savenow_maze_api_key');
+      var mazeKey = urlKey || storedKey || 'YOUR_MAZE_API_KEY';
+
+      // Save if provided via URL
+      if (urlKey) {
+        localStorage.setItem('savenow_maze_api_key', urlKey);
+      }
+      window.__MAZE_API_KEY__ = mazeKey;
+
+      // Universal Maze Tracking Snippet
+      (function (m, a, z, e) {
+        var s, t, u, v;
+        try { t = m.sessionStorage.getItem('maze-us'); } catch (err) {}
+        if (!t) {
+          t = new Date().getTime();
+          try { m.sessionStorage.setItem('maze-us', t); } catch (err) {}
+        }
+        u = document.currentScript || (function () {
+          var w = document.getElementsByTagName('script');
+          return w[w.length - 1];
+        })();
+        v = u && u.nonce;
+        s = a.createElement('script');
+        s.src = z + '?apiKey=' + e;
+        s.async = true;
+        if (v) s.setAttribute('nonce', v);
+        a.getElementsByTagName('head')[0].appendChild(s);
+        m.mazeUniversalSnippetApiKey = e;
+      })(window, document, 'https://snippet.maze.co/maze-universal-loader.js', mazeKey);
+    })();
+  </script>
+
+  <!-- Design System Tokens & Base Component Styles -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+
+  <!-- Screen-specific modular CSS files -->
+  <link rel="stylesheet" href="src/screens/onboarding/onboarding.css">
+  <link rel="stylesheet" href="src/screens/setup-banks/setup-banks.css">
+  <link rel="stylesheet" href="src/screens/setup-goal/setup-goal.css">
+  <link rel="stylesheet" href="src/screens/setup-recurring/setup-recurring.css">
+  <link rel="stylesheet" href="src/screens/setup-socials/setup-socials.css">
+  <link rel="stylesheet" href="src/screens/home/home.css">
+  <link rel="stylesheet" href="src/screens/insights/insights.css">
+  <link rel="stylesheet" href="src/screens/social/social.css">
+  <link rel="stylesheet" href="src/screens/settings/settings.css">
+</head>
+<body data-theme="light">
+
+  <div id="app-viewport-wrapper">
+
+    <!-- Mobile Edge-to-Edge Container -->
+    <main class="mobile-app-root" id="mobile-app">
+
+      <!-- Discrete Floating Theme Switcher -->
+      <header class="app-micro-header">
+        <button class="theme-micro-toggle" id="toggle-theme-btn" aria-label="Toggle theme">
+          <span class="theme-icon">&#9790;</span>
+          <span class="theme-label">Dark</span>
+        </button>
+      </header>
+
+      <!-- Main Screens Viewport: Mounted dynamically by App.router -->
+      <div class="screens-viewport" id="screens-viewport"></div>
+
+      <!-- ==============================================================
+           BOTTOM NAVIGATION BAR
+           Tabs: Home · Insights · Add (+) · Social · Settings
+           ============================================================== -->
+      <nav class="bottom-nav-bar" id="app-bottom-nav">
+        <!-- 1. Home -->
+        <button class="nav-tab-btn active" data-tab="home" data-goto="screen-home" id="tab-btn-home">
+          <svg class="nav-tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          </svg>
+          <span>Home</span>
+        </button>
+
+        <!-- 2. Insights -->
+        <button class="nav-tab-btn" data-tab="insights" data-goto="screen-insights" id="tab-btn-insights">
+          <svg class="nav-tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <line x1="18" y1="20" x2="18" y2="10"/>
+            <line x1="12" y1="20" x2="12" y2="4"/>
+            <line x1="6" y1="20" x2="6" y2="14"/>
+          </svg>
+          <span>Insights</span>
+        </button>
+
+        <!-- 3. Add Button (Elevated Center Circle) -->
+        <button class="nav-tab-btn nav-center-add" id="nav-add-expense-btn" aria-label="Add transaction">
+          <div class="nav-add-circle">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8">
+              <line x1="12" y1="5" x2="12" y2="19"/>
+              <line x1="5" y1="12" x2="19" y2="12"/>
+            </svg>
+          </div>
+          <span style="margin-top: 2px;">Add</span>
+        </button>
+
+        <!-- 4. Social -->
+        <button class="nav-tab-btn" data-tab="social" data-goto="screen-social" id="tab-btn-social">
+          <svg class="nav-tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+          <span>Social</span>
+        </button>
+
+        <!-- 5. Settings -->
+        <button class="nav-tab-btn" data-tab="settings" data-goto="screen-settings" id="tab-btn-settings">
+          <svg class="nav-tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+          </svg>
+          <span>Settings</span>
+        </button>
+      </nav>
+
+      <!-- MODAL 1: BANK AUTH SPLASH (DBS Splash) -->
+      <div class="bank-auth-splash" id="bank-auth-splash">
+        <div class="bank-auth-banner">
+          <div class="bank-auth-black-side">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path d="M12 0L15.5 8.5L24 12L15.5 15.5L12 24L8.5 15.5L0 12L8.5 8.5L12 0Z" fill="#E11D48"/>
+            </svg>
+            <span>DBS</span>
+          </div>
+          <div class="bank-auth-gray-side">
+            <span>Live more,</span>
+            <span>Bank less</span>
+          </div>
+        </div>
+        <div class="auth-spinner"></div>
+        <div class="auth-status-text" id="bank-auth-status-text">Connecting to DBS Bank...</div>
+      </div>
+
+      <!-- MODAL 2: CATEGORY PICKER SHEET -->
+      <div class="modal-overlay" id="category-modal">
+        <div class="bottom-sheet">
+          <div class="sheet-handle-bar"></div>
+          <div class="sheet-title">Select Category</div>
+          <div class="sheet-subtitle">Pick the category for this recurring charge</div>
+
+          <div class="category-select-list">
+            <div class="category-option-item" data-cat="MUSIC">
+              <span>MUSIC</span>
+              <span style="color: var(--sn-cat-shopping); font-size: 18px;">&#9835;</span>
+            </div>
+            <div class="category-option-item" data-cat="RENT">
+              <span>RENT</span>
+              <span style="color: var(--sn-cat-bills); font-size: 18px;">&#8962;</span>
+            </div>
+            <div class="category-option-item" data-cat="TV & STREAMING">
+              <span>TV &amp; STREAMING</span>
+              <span style="color: var(--sn-cat-food); font-size: 18px;">&#9654;</span>
+            </div>
+            <div class="category-option-item" data-cat="SUBSCRIPTIONS">
+              <span>SUBSCRIPTIONS</span>
+              <span style="color: var(--sn-cat-other); font-size: 18px;">&#8634;</span>
+            </div>
+            <div class="category-option-item" data-cat="UTILITIES">
+              <span>UTILITIES</span>
+              <span style="color: var(--sn-cat-transport); font-size: 18px;">&#9889;</span>
+            </div>
+            <div class="category-option-item" data-cat="GYM">
+              <span>GYM</span>
+              <span style="color: var(--sn-emerald-500); font-size: 18px;">&#9874;</span>
+            </div>
+            <div class="category-option-item" data-cat="OTHER">
+              <span>OTHER</span>
+              <span style="color: var(--sn-text-muted); font-size: 18px;">&bull;&bull;&bull;</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODAL 3: QUICK ADD TRANSACTION (Center Button) -->
+      <div class="modal-overlay" id="add-expense-modal">
+        <div class="bottom-sheet">
+          <div class="sheet-handle-bar"></div>
+          <div class="sheet-title">Add Transaction</div>
+          <div class="sheet-subtitle">Log spending against your $20 daily limit</div>
+
+          <div class="input-outline-box" style="margin-top: 12px;">
+            <span class="input-outline-label">PURCHASE DESCRIPTION</span>
+            <input type="text" class="input-outline-field" id="quick-exp-title" placeholder="e.g. Iced Latte, Lunch Bowl">
+          </div>
+
+          <div class="input-outline-box">
+            <span class="input-outline-label">AMOUNT ($)</span>
+            <input type="number" step="0.10" class="input-outline-field" id="quick-exp-amt" placeholder="4.50">
+          </div>
+
+          <div class="input-outline-box">
+            <span class="input-outline-label">CATEGORY</span>
+            <select class="input-outline-field" id="quick-exp-cat" style="background: transparent; border: none; outline: none; width: 100%;">
+              <option value="food">Food &amp; Dining (34%)</option>
+              <option value="transport">Transport (22%)</option>
+              <option value="shopping">Shopping (20%)</option>
+              <option value="bills">Bills &amp; Subscriptions (14%)</option>
+              <option value="other">Other (10%)</option>
+            </select>
+          </div>
+
+          <button class="btn btn-primary" id="confirm-add-expense-btn" style="width: 100%; height: 50px; margin-top: 10px; font-size: 16px;">Record Expense</button>
+        </div>
+      </div>
+
+      <!-- Toast Notice -->
+      <div class="toast-notice" id="app-toast"></div>
+
+    </main><!-- /.mobile-app-root -->
+
+  </div><!-- /#app-viewport-wrapper -->
+
+  <!-- Core Architecture (State, Router, Maze A/B Testing) -->
+  <script src="src/core/state.js"></script>
+  <script src="src/core/router.js"></script>
+  <script src="src/core/maze.js"></script>
+
+  <!-- Modular Screens (Independently editable by teammates) -->
+  <script src="src/screens/onboarding/onboarding.js"></script>
+  <script src="src/screens/setup-banks/setup-banks.js"></script>
+  <script src="src/screens/setup-goal/setup-goal.js"></script>
+  <script src="src/screens/setup-recurring/setup-recurring.js"></script>
+  <script src="src/screens/setup-socials/setup-socials.js"></script>
+  <script src="src/screens/home/home.js"></script>
+  <script src="src/screens/insights/insights.js"></script>
+  <script src="src/screens/social/social.js"></script>
+  <script src="src/screens/settings/settings.js"></script>
+
+  <!-- App Bootstrap -->
+  <script src="src/main.js"></script>
+</body>
+</html>
