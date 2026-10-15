@@ -1,0 +1,1431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Savenow — High-Fidelity Color Palette & Design System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* Brand & Primary */
+      --sn-obsidian-950: #0B0F19;
+      --sn-obsidian-900: #0F172A;
+      --sn-obsidian-800: #1E293B;
+      --sn-emerald-600: #059669;
+      --sn-emerald-500: #10B981;
+      --sn-emerald-400: #34D399;
+      --sn-emerald-100: #D1FAE5;
+      --sn-emerald-50:  #ECFDF5;
+
+      /* Light Surfaces & Neutrals */
+      --sn-bg-canvas: #F8FAFC;
+      --sn-bg-card: #FFFFFF;
+      --sn-bg-subtle: #F1F5F9;
+      --sn-border-hairline: #E2E8F0;
+      --sn-border-strong: #CBD5E1;
+      --sn-text-primary: #0F172A;
+      --sn-text-secondary: #475569;
+      --sn-text-muted: #94A3B8;
+
+      /* Semantic Budget States */
+      --sn-amber-600: #D97706;
+      --sn-amber-500: #F59E0B;
+      --sn-amber-100: #FEF3C7;
+      --sn-amber-50:  #FFFBEB;
+
+      --sn-rose-600: #E11D48;
+      --sn-rose-500: #F43F5E;
+      --sn-rose-100: #FFE4E6;
+      --sn-rose-50:  #FFF1F2;
+
+      --sn-indigo-600: #4F46E5;
+      --sn-indigo-500: #6366F1;
+      --sn-indigo-100: #E0E7FF;
+      --sn-indigo-50:  #EEF2FF;
+
+      /* Social & Streak Gamification */
+      --sn-streak-600: #EA580C;
+      --sn-streak-500: #F97316;
+      --sn-streak-100: #FFEDD5;
+      --sn-streak-50:  #FFF7ED;
+
+      /* 5-Category Data Visualization Palette */
+      --sn-cat-food: #F97316;       /* 34% Food */
+      --sn-cat-transport: #0EA5E9;  /* 22% Transport */
+      --sn-cat-shopping: #8B5CF6;   /* 20% Shopping */
+      --sn-cat-bills: #6366F1;      /* 14% Bills */
+      --sn-cat-other: #14B8A6;      /* 10% Other */
+
+      --radius-xl: 24px;
+      --radius-lg: 16px;
+      --radius-md: 12px;
+      --radius-pill: 9999px;
+      --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.05), 0 1px 2px rgba(15, 23, 42, 0.03);
+      --shadow-md: 0 10px 25px -5px rgba(15, 23, 42, 0.06), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
+      --shadow-lg: 0 20px 35px -10px rgba(15, 23, 42, 0.10);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--sn-bg-canvas);
+      color: var(--sn-text-primary);
+      line-height: 1.5;
+      padding-bottom: 80px;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Top Banner */
+    .hero-header {
+      background: linear-gradient(135deg, #0B0F19 0%, #0F172A 60%, #064E3B 100%);
+      color: #FFFFFF;
+      padding: 56px 24px 48px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+
+    .brand-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .brand-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      padding: 8px 16px;
+      border-radius: var(--radius-pill);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--sn-emerald-400);
+    }
+
+    .hero-title {
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 12px;
+    }
+
+    .hero-subtitle {
+      font-size: 17px;
+      color: #94A3B8;
+      max-width: 760px;
+      line-height: 1.6;
+    }
+
+    .rationale-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .rationale-pill {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #E2E8F0;
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    /* Section Layout */
+    .section {
+      margin-top: 48px;
+      padding: 0 24px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--sn-border-hairline);
+    }
+
+    .section-title {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--sn-text-primary);
+    }
+
+    .section-desc {
+      font-size: 14px;
+      color: var(--sn-text-secondary);
+    }
+
+    /* Swatch Grid */
+    .swatch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
+      gap: 16px;
+    }
+
+    .swatch-card {
+      background: var(--sn-bg-card);
+      border: 1px solid var(--sn-border-hairline);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+      position: relative;
+    }
+
+    .swatch-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--sn-border-strong);
+    }
+
+    .swatch-color {
+      height: 104px;
+      width: 100%;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding: 12px 14px;
+      position: relative;
+    }
+
+    .contrast-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 6px;
+      backdrop-filter: blur(4px);
+    }
+
+    .copy-hint {
+      font-size: 11px;
+      font-weight: 600;
+      opacity: 0;
+      transition: opacity 0.15s ease;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: rgba(15, 23, 42, 0.75);
+      color: #fff;
+    }
+
+    .swatch-card:hover .copy-hint {
+      opacity: 1;
+    }
+
+    .swatch-meta {
+      padding: 14px 16px;
+    }
+
+    .swatch-name {
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--sn-text-primary);
+      margin-bottom: 2px;
+    }
+
+    .swatch-token {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--sn-indigo-600);
+      margin-bottom: 8px;
+    }
+
+    .swatch-codes {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--sn-text-secondary);
+      background: var(--sn-bg-subtle);
+      padding: 6px 10px;
+      border-radius: 8px;
+      margin-bottom: 8px;
+    }
+
+    .swatch-usage {
+      font-size: 12.5px;
+      color: var(--sn-text-secondary);
+      line-height: 1.45;
+    }
+
+    /* Interactive Prototype Preview Section */
+    .preview-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      background: var(--sn-bg-card);
+      border: 1px solid var(--sn-border-hairline);
+      padding: 12px 18px;
+      border-radius: var(--radius-lg);
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .toggle-group {
+      display: inline-flex;
+      background: var(--sn-bg-subtle);
+      padding: 4px;
+      border-radius: var(--radius-pill);
+      gap: 4px;
+    }
+
+    .toggle-btn {
+      border: none;
+      background: transparent;
+      padding: 7px 16px;
+      border-radius: var(--radius-pill);
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--sn-text-secondary);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .toggle-btn.active {
+      background: var(--sn-obsidian-900);
+      color: #FFFFFF;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .phones-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 28px;
+      align-items: start;
+    }
+
+    /* Phone Frame Mockup */
+    .phone-frame {
+      background: var(--phone-canvas, #F8FAFC);
+      color: var(--phone-text, #0F172A);
+      border: 8px solid #1E293B;
+      border-radius: 40px;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      flex-direction: column;
+      min-height: 670px;
+      transition: background 0.25s ease, color 0.25s ease;
+    }
+
+    .phone-frame.dark-mode {
+      --phone-canvas: #0B0F19;
+      --phone-card: #111827;
+      --phone-subtle: #1E293B;
+      --phone-border: #1F2937;
+      --phone-text: #F8FAFC;
+      --phone-subtext: #94A3B8;
+      --phone-muted: #64748B;
+      border-color: #334155;
+    }
+
+    .phone-frame.light-mode {
+      --phone-canvas: #F8FAFC;
+      --phone-card: #FFFFFF;
+      --phone-subtle: #F1F5F9;
+      --phone-border: #E2E8F0;
+      --phone-text: #0F172A;
+      --phone-subtext: #475569;
+      --phone-muted: #94A3B8;
+    }
+
+    .phone-status {
+      display: flex;
+      justify-content: space-between;
+      padding: 14px 24px 8px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--phone-text);
+    }
+
+    .phone-body {
+      padding: 12px 20px 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .app-topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .app-logo {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .app-logo-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--sn-emerald-500);
+    }
+
+    .streak-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: var(--radius-pill);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      background: var(--sn-streak-50);
+      color: var(--sn-streak-600);
+      border: 1px solid #FED7AA;
+    }
+
+    .phone-frame.dark-mode .streak-pill {
+      background: rgba(249, 115, 22, 0.14);
+      border-color: rgba(249, 115, 22, 0.35);
+      color: #FB923C;
+    }
+
+    .streak-pill.broken {
+      background: var(--phone-subtle);
+      color: var(--phone-subtext);
+      border-color: var(--phone-border);
+    }
+
+    /* Ring Gauge */
+    .ring-container {
+      display: flex;
+      justify-content: center;
+      margin: 6px 0;
+    }
+
+    .budget-ring {
+      width: 210px;
+      height: 210px;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: var(--phone-card);
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+      position: relative;
+      border: 10px solid var(--ring-color, var(--sn-emerald-500));
+      transition: border-color 0.25s ease;
+    }
+
+    .ring-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--phone-subtext);
+      margin-bottom: 4px;
+    }
+
+    .ring-amount {
+      font-size: 38px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      color: var(--phone-text);
+      line-height: 1.05;
+    }
+
+    .ring-sub {
+      font-size: 11.5px;
+      font-weight: 500;
+      color: var(--phone-subtext);
+      margin-top: 6px;
+    }
+
+    /* Alert Banner */
+    .nudge-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      border-radius: var(--radius-pill);
+      font-size: 12.5px;
+      font-weight: 600;
+      background: var(--nudge-bg, var(--sn-amber-50));
+      color: var(--nudge-text, #B45309);
+      border: 1px solid var(--nudge-border, #FDE68A);
+    }
+
+    .phone-frame.dark-mode .nudge-banner.amber {
+      --nudge-bg: rgba(245, 158, 11, 0.14);
+      --nudge-text: #FBBF24;
+      --nudge-border: rgba(245, 158, 11, 0.35);
+    }
+
+    .phone-frame.dark-mode .nudge-banner.rose {
+      --nudge-bg: rgba(244, 63, 94, 0.15);
+      --nudge-text: #FDA4AF;
+      --nudge-border: rgba(244, 63, 94, 0.35);
+    }
+
+    .phone-frame.dark-mode .nudge-banner.emerald {
+      --nudge-bg: rgba(16, 185, 129, 0.14);
+      --nudge-text: #6EE7B7;
+      --nudge-border: rgba(16, 185, 129, 0.35);
+    }
+
+    /* Mockup Cards */
+    .ui-card {
+      background: var(--phone-card);
+      border: 1px solid var(--phone-border);
+      border-radius: 18px;
+      padding: 14px 16px;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.03);
+    }
+
+    .card-eyebrow {
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--phone-subtext);
+      margin-bottom: 6px;
+    }
+
+    .saved-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .saved-val {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .ontrack-pill {
+      background: var(--sn-emerald-50);
+      color: var(--sn-emerald-600);
+      border: 1px solid var(--sn-emerald-100);
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      font-size: 11.5px;
+      font-weight: 700;
+    }
+
+    .phone-frame.dark-mode .ontrack-pill {
+      background: rgba(16, 185, 129, 0.15);
+      border-color: rgba(16, 185, 129, 0.35);
+      color: var(--sn-emerald-400);
+    }
+
+    .expense-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 4px;
+    }
+
+    .expense-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .cat-avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: #FFEDD5;
+      color: #EA580C;
+      font-weight: 700;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .phone-frame.dark-mode .cat-avatar {
+      background: rgba(249, 115, 22, 0.2);
+      color: #FB923C;
+    }
+
+    .phone-nav {
+      margin-top: auto;
+      border-top: 1px solid var(--phone-border);
+      background: var(--phone-card);
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 8px 14px;
+      font-size: 10.5px;
+      font-weight: 600;
+      color: var(--phone-muted);
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .nav-item.active {
+      color: var(--sn-emerald-500);
+    }
+
+    /* Donut & Bars inside Phone 2 */
+    .cat-breakdown-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .donut-chart {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      background: conic-gradient(
+        var(--sn-cat-food) 0% 34%,
+        var(--sn-cat-transport) 34% 56%,
+        var(--sn-cat-shopping) 56% 76%,
+        var(--sn-cat-bills) 76% 90%,
+        var(--sn-cat-other) 90% 100%
+      );
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .donut-hole {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: var(--phone-card);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .cat-legend {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      font-size: 11.5px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .legend-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 6px;
+    }
+
+    .mini-bars {
+      display: flex;
+      align-items: flex-end;
+      gap: 6px;
+      height: 52px;
+    }
+
+    .mini-bar {
+      width: 11px;
+      border-radius: 4px;
+      background: var(--phone-border);
+    }
+
+    .mini-bar.highlight {
+      background: var(--sn-emerald-500);
+    }
+
+    /* Recovery & Social in Phone 3 */
+    .recovery-card {
+      background: var(--sn-indigo-50);
+      border: 1px solid var(--sn-indigo-100);
+      border-radius: 18px;
+      padding: 14px 16px;
+    }
+
+    .phone-frame.dark-mode .recovery-card {
+      background: rgba(99, 102, 241, 0.14);
+      border-color: rgba(99, 102, 241, 0.35);
+    }
+
+    .cta-btn {
+      width: 100%;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: none;
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+      margin-top: 10px;
+      background: var(--sn-obsidian-900);
+      color: #FFFFFF;
+    }
+
+    .phone-frame.dark-mode .cta-btn {
+      background: var(--sn-emerald-500);
+      color: #0B0F19;
+    }
+
+    .cheer-btn {
+      background: var(--sn-streak-50);
+      color: var(--sn-streak-600);
+      border: 1px solid #FED7AA;
+      padding: 5px 12px;
+      border-radius: var(--radius-pill);
+      font-size: 11.5px;
+      font-weight: 700;
+    }
+
+    .phone-frame.dark-mode .cheer-btn {
+      background: rgba(249, 115, 22, 0.16);
+      border-color: rgba(249, 115, 22, 0.35);
+      color: #FB923C;
+    }
+
+    /* Code Export Block */
+    .code-box {
+      background: #0F172A;
+      color: #E2E8F0;
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12.5px;
+      overflow-x: auto;
+      line-height: 1.65;
+      position: relative;
+      border: 1px solid #1E293B;
+    }
+
+    .copy-code-btn {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: rgba(255, 255, 255, 0.1);
+      color: #FFFFFF;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .copy-code-btn:hover {
+      background: rgba(255, 255, 255, 0.18);
+    }
+
+    /* Toast */
+    #toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #0F172A;
+      color: #FFFFFF;
+      padding: 12px 20px;
+      border-radius: var(--radius-pill);
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      opacity: 0;
+      transform: translateY(10px);
+      pointer-events: none;
+      transition: all 0.2s ease;
+      z-index: 999;
+    }
+
+    #toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <header class="hero-header">
+    <div class="container">
+      <div class="brand-row">
+        <div class="brand-badge">
+          <span>●</span> Savenow · High-Fidelity Design System
+        </div>
+      </div>
+      <h1 class="hero-title">Sleek Emerald &amp; Obsidian Color Palette</h1>
+      <p class="hero-subtitle">
+        Tailored directly from your <strong>Savenow ("Finance Made Easy")</strong> low-fidelity wireframes. Designed to turn monochrome rings, daily $20 budget states, 4-day catch-up plans, 5-category charts, and 98-day social streaks into a calm, modern, high-trust mobile experience.
+      </p>
+      <div class="rationale-pills">
+        <span class="rationale-pill">✓ Click any swatch to copy HEX</span>
+        <span class="rationale-pill">✓ 3-Tier Daily Limit Ring States</span>
+        <span class="rationale-pill">✓ Non-Punitive Indigo Recovery Mode</span>
+        <span class="rationale-pill">✓ 5-Category Insights Palette</span>
+        <span class="rationale-pill">✓ Light &amp; Dark Mode Ready</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- 1. Brand & Primary Core -->
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">1. Brand &amp; Primary Accents</h2>
+        <span class="section-desc">Used for the "Save Now" onboarding mark, primary CTAs ("Get Started", "Done"), active bottom tabs, and "Within Limit" ring states.</span>
+      </div>
+      <div class="swatch-grid">
+        <div class="swatch-card" onclick="copyHex('#0F172A', 'Obsidian Slate 900')">
+          <div class="swatch-color" style="background: #0F172A; color: #FFF;">
+            <span class="contrast-tag" style="background: rgba(255,255,255,0.14);">AAA 17.8:1</span>
+            <span class="copy-hint">Click to copy</span>
+          </div>
+          <div class="swatch-meta">
+            <div class="swatch-name">Obsidian Slate 900</div>
+            <div class="swatch-token">--sn-obsidian-900</div>
+            <div class="swatch-codes"><span>#0F172A</span><span>rgb(15, 23, 42)</span></div>
+            <p class="swatch-usage">Primary button fills ("Get Started", "Done"), hero numerals ($17.40, $584.00), and wordmark.</p>
+          </div>
+        </div>
+
+        <div class="swatch-card" onclick="copyHex('#10B981', 'Savenow Emerald 500')">
+          <div class="swatch-color" style="background: #10B981; color: #0B0F19;">
+            <span class="contrast-tag" style="background: rgba(255,255,255,0.35);">Brand Accent</span>
+            <span class="copy-hint">Click to copy</span>
+          </div>
+          <div class="swatch-meta">
+            <div class="swatch-name">Savenow Emerald 500</div>
+            <div class="swatch-token">--sn-emerald-500</div>
+            <div class="swatch-codes"><span>#10B981</span><span>rgb(16, 185, 129)</span></div>
+            <p class="swatch-usage">Healthy daily budget ring (&lt;80% spent), active navigation indicator, and Timeline highlight bar.</p>
+          </div>
+        </div>
+
+        <div class="swatch-card" onclick="copyHex('#059669', 'Emerald Deep 600')">
+          <div class="swatch-color" style="background: #059669; color: #FFF;">
+            <span class="contrast-tag" style="background: rgba(0,0,0,0.25);">AA Text</span>
+            <span class="copy-hint">Click to copy</span>
+          </div>
+          <div class="swatch-meta">
+            <div class="swatch-name">Emerald Deep 600</div>
+            <div class="swatch-token">--sn-emerald-600</div>
+            <div class="swatch-codes"><span>#059669</span><span>rgb(5, 150, 105)</span></div>
+            <p class="swatch-usage">Accessible green text on light pills ("↑ on track" badge in SAVED · MONTH $190 card, "-18%" insight).</p>
+          </div>
+        </div>
+
+        <div class="swatch-card" onclick="copyHex('#ECFDF5', 'Mint Surface 50')">
+          <div class="swatch-color" style="background: #ECFDF5; color: #059669; border-bottom: 1px solid #D1FAE5;">
+            <span class="contrast-tag" style="background: #D1FAE5;">Pill Tint</span>
+            <span class="copy-hint">Click to copy</span>
+          </div>
+          <div class="swatch-meta">
+            <div class="swatch-name">Mint Surface 50</div>
+            <div class="swatch-token">--sn-emerald-50</div>
+            <div class="swatch-codes"><span>#ECFDF5</span><span>rgb(236, 253, 245)</span></div>
+            <p class="swatch-usage">Soft background fill for the "↑ on track" pill badge and positive savings milestones.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Semantic Budget & Recovery States -->
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">2. Semantic Budget, Warning &amp; Recovery States</h2>
+        <span class="section-desc">Purpose-built for your 3 daily budget states: Nearing Limit ($17.40 / 87%), Over Limit ($21.20), and 4-Day Budget Recovery ($19.70/day).</span>
+      </div>
+      <div class="swatch-grid">
+        <div class="swatch-card" onclick="copyHex('#F59E0B', 'Amber Nudge 500')">
+          <div class="swatch-color" style="background: #F59E0B; color: #0F172A;">
+            <span class="contrast-tag" style="background: rgba(255,255,255,0.4);">80–99% Limit</span>
+            <span class="copy-hint">Click to copy</span>
+          </div>
+          <div class="swatch-meta">
+            <div class="swatch-name">Amber Nudge 500</div>
+            <div class="swatch-token">--sn-amber-500</div>
+            <div class="swatch-codes"><span>#F59E0B</span><span>rgb(245, 158, 11)</span></div>
+            <p class="swatch-usage">Ring stroke when nearing daily budget ($17.40 / 87% used) and "Small purchases (50%)" progress bar.</p>
+          </div>
+        </div>
+
+        <div class="swatch-card" onclick="copyHex('#FFFBEB', 'Amber Alert Tint 50')">
+          <div class="swatch-color" style="background: #FFFBEB; color: #B45309; border-bottom: 1px solid #FDE68A;">
+            <span class="contrast-tag" style="background: #FEF3C7;">Warning Pill</span>
+            <span class="copy-hint">Click to copy</span>
+          </div>
+          <div class="swatch-meta">
+            <div class="swatch-name">Amber Alert Tint 50</div>
+            <div class="swatch-token">--sn-amber-50</div>
+            <div class="swatch-codes"><span>#FFFBEB</span><span>Text: #B45309</span></div>
+            <p class="swatch-usage">Fill for "$2.60 left today. Plan your dinner ›" pill and "You're nearing today's budget" modal banner.</p>
+          </div>
+        </div>
+
+        <div class="swatch-card" onclick="copyHex('#F43F5E', 'Coral Rose 500')">
+          <div class="swatch-color" style="background: #F43F5E; color: #FFF;">
+            <span class="contrast-tag" style="background: rgba(0,0,0,0.25);">Over Limit</span>
+            <span class="copy-hint">Click to copy</span>
+          </div>
+          <div class="swatch-meta">
+            <div class="swatch-name">Coral Rose 500</div>
+            <div class="swatch-token">--sn-rose-500</div>
+            <div class="swatch-codes"><span>#F43F5E</span><span>rgb(244, 63, 94)</span></div>
+            <p class="swatch-usage">Over-limit ring stroke ($21.20 / $1.20 over limit) and swipe-to-remove fixed expense action.</p>
+          </div>
+        </div>
+
+        <div class="swatch-card" onclick="copyHex('#FFF1F2', 'Rose Soft Pill 50')">
+          <div class="swatch-color" style="background: #FFF1F2; color: #BE123C; border-bottom: 1px solid #FECDD3;">
+            <span class="contrast-tag" style="background: #FFE4E6;">Over-Limit Pill</span>
+            <span class="copy-hint">Click to copy</span>
+          </div>
+          <div class="swatch-meta">
+            <div class="swatch-name">Rose Soft Pill 50</div>
+            <div class="swatch-token">--sn-rose-50</div>
+            <div class="swatch-codes"><span>#FFF1F2</span><span>Text: #BE123C</span></div>
+            <p class="swatch-usage">Surface for "$1.20 over today. See a catch-up plan ›" nudge—urgent yet non-punitive.</p>
+          </div>
+        </div>
+
+        <div class="swatch-card" onclick="copyHex('#6366F1', 'Recovery Indigo 500')">
+          <div class="swatch-color" style="background: #6366F1; color: #FFF;">
+            <span class="contrast-tag" style="background: rgba(0,0,0,0.25);">Catch-Up Plan</span>
+            <span class="copy-hint">Click to copy</span>
+          </div>
+          <div class="swatch-meta">
+            <div class="swatch-name">Recovery Indigo 500</div>
+            <div class="swatch-token">--sn-indigo-500</div>
+            <div class="swatch-codes"><span>#6366F1</span><span>rgb(99, 102, 241)</span></div>
+            <p class="swatch-usage">Dedicated accent for "Budget recovery — Plan applied" ($19.70/day guide) and "Goal trade-off (4.5%)".</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Social Streaks & 5-Category Data Viz -->
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">3. Social Streak &amp; 5-Category Insights Palette</h2>
+        <span class="section-desc">Colorblind-safe, balanced hues mapped to your exact 5 categories (Food 34%, Transport 22%, Shopping 20%, Bills 14%, Other 10%) and 98-Day Streak.</span>
+      </div>
+      <div class="swatch-grid">
+        <div class="swatch-card" onclick="copyHex('#F97316', 'Streak & Food Tangerine')">
+          <div class="swatch-color" style="background: #F97316; color: #FFF;">
+            <span class="contrast-tag" style="background: rgba(0,0,0,0.25);">Streak &amp; Food (34%)</span>
+            <span class="copy-hint">Click to copy</span>
+          </div>
+          <div class="swatch-meta">
+            <div class="swatch-name">Vibrant Tangerine 500</div>
+            <div class="swatch-token">--sn-streak-500 / --sn-cat-food</div>
+            <div class="swatch-codes"><span>#F97316</span><span>Tint: #FFF7ED</span></div>
+            <p class="swatch-usage">"98-DAY STREAK" flame badge, Social "Cheer" buttons, and Food category slice (34% · $198.56, Bubble tea).</p>
+          </div>
+        </div>
+
+        <div class="swatch-card" onclick="copyHex('#0EA5E9', 'Transport Sky 500')">
+          <div class="swatch-color" style="background: #0EA5E9; color: #FFF;">
+            <span class="contrast-tag" style="background: rgba(0,0,0,0.25);">Transport (22%)</span>
+            <span class="copy-hint">Click to copy</span>
+          </div>
+          <div class="swatch-meta">
+            <div class="swatch-name">Transport Sky 500</div>
+            <div class="swatch-token">--sn-cat-transport</div>
+            <div class="swatch-codes"><span>#0EA5E9</span><span>Tint: #E0F2FE</span></div>
+            <p class="swatch-usage">Transport category slice (22% · $128.48) in Categories pie chart and transit transaction badges.</p>
+          </div>
+        </div>
+
+        <div class="swatch-card" onclick="copyHex('#8B5CF6', 'Shopping Violet 500')">
+          <div class="swatch-color" style="background: #8B5CF6; color: #FFF;">
+            <span class="contrast-tag" style="background: rgba(0,0,0,0.25);">Shopping (20%)</span>
+            <span class="copy-hint">Click to copy</span>
+          </div>
+          <div class="swatch-meta">
+            <div class="swatch-name">Shopping Violet 500</div>
+            <div class="swatch-token">--sn-cat-shopping</div>
+            <div class="swatch-codes"><span>#8B5CF6</span><span>Tint: #EDE9FE</span></div>
+            <p class="swatch-usage">Shopping category slice (20% · $116.80) and preserved "98-DAY BEST" badge when streak resets.</p>
+          </div>
+        </div>
+
+        <div class="swatch-card" onclick="copyHex('#6366F1', 'Bills Indigo 500')">
+          <div class="swatch-color" style="background: #6366F1; color: #FFF;">
+            <span class="contrast-tag" style="background: rgba(0,0,0,0.25);">Bills (14%)</span>
+            <span class="copy-hint">Click to copy</span>
+          </div>
+          <div class="swatch-meta">
+            <div class="swatch-name">Bills Indigo 500</div>
+            <div class="swatch-token">--sn-cat-bills</div>
+            <div class="swatch-codes"><span>#6366F1</span><span>Tint: #E0E7FF</span></div>
+            <p class="swatch-usage">Bills &amp; recurring fixed expenses slice (14% · $81.76) during Setup and Category views.</p>
+          </div>
+        </div>
+
+        <div class="swatch-card" onclick="copyHex('#14B8A6', 'Other Teal 500')">
+          <div class="swatch-color" style="background: #14B8A6; color: #FFF;">
+            <span class="contrast-tag" style="background: rgba(0,0,0,0.25);">Other (10%)</span>
+            <span class="copy-hint">Click to copy</span>
+          </div>
+          <div class="swatch-meta">
+            <div class="swatch-name">Other Teal 500</div>
+            <div class="swatch-token">--sn-cat-other</div>
+            <div class="swatch-codes"><span>#14B8A6</span><span>Tint: #CCFBF1</span></div>
+            <p class="swatch-usage">Other category slice (10% · $58.40) and secondary chart accents.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Surfaces, Neutrals & Dark Mode -->
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">4. Surfaces, Borders &amp; Typography Hierarchy</h2>
+        <span class="section-desc">Replaces harsh black wireframe outlines with soft layered elevation in Light Mode and sleek carbon depth in Dark Mode.</span>
+      </div>
+      <div class="swatch-grid">
+        <div class="swatch-card" onclick="copyHex('#F8FAFC', 'Alabaster Canvas')">
+          <div class="swatch-color" style="background: #F8FAFC; color: #0F172A; border-bottom: 1px solid #E2E8F0;">
+            <span class="contrast-tag" style="background: #E2E8F0;">Light Canvas</span>
+            <span class="copy-hint">Click to copy</span>
+          </div>
+          <div class="swatch-meta">
+            <div class="swatch-name">Alabaster Canvas</div>
+            <div class="swatch-token">--sn-bg-canvas</div>
+            <div class="swatch-codes"><span>#F8FAFC</span><span>rgb(248, 250, 252)</span></div>
+            <p class="swatch-usage">App screen background so pure `#FFFFFF` cards pop with soft depth without heavy black borders.</p>
+          </div>
+        </div>
+
+        <div class="swatch-card" onclick="copyHex('#FFFFFF', 'Pure Card Surface')">
+          <div class="swatch-color" style="background: #FFFFFF; color: #0F172A; border-bottom: 1px solid #E2E8F0;">
+            <span class="contrast-tag" style="background: #F1F5F9;">Elevated Card</span>
+            <span class="copy-hint">Click to copy</span>
+          </div>
+          <div class="swatch-meta">
+            <div class="swatch-name">Pure Card Surface</div>
+            <div class="swatch-token">--sn-bg-card</div>
+            <div class="swatch-codes"><span>#FFFFFF</span><span>Border: #E2E8F0</span></div>
+            <p class="swatch-usage">Cards ("SAVED · MONTH", "Categories", "Timeline", "CURRENT STREAK") paired with 1px `#E2E8F0` border.</p>
+          </div>
+        </div>
+
+        <div class="swatch-card" onclick="copyHex('#475569', 'Slate Secondary 600')">
+          <div class="swatch-color" style="background: #475569; color: #FFF;">
+            <span class="contrast-tag" style="background: rgba(255,255,255,0.2);">AA 7.5:1</span>
+            <span class="copy-hint">Click to copy</span>
+          </div>
+          <div class="swatch-meta">
+            <div class="swatch-name">Slate Secondary 600</div>
+            <div class="swatch-token">--sn-text-secondary</div>
+            <div class="swatch-codes"><span>#475569</span><span>Muted: #94A3B8</span></div>
+            <p class="swatch-usage">Section eyebrows ("SPENT TODAY", "SAVED · MONTH", "LATEST EXPENSE") and supporting body copy.</p>
+          </div>
+        </div>
+
+        <div class="swatch-card" onclick="copyHex('#0B0F19', 'Carbon Night 950')">
+          <div class="swatch-color" style="background: #0B0F19; color: #F8FAFC;">
+            <span class="contrast-tag" style="background: rgba(255,255,255,0.15);">Dark Canvas</span>
+            <span class="copy-hint">Click to copy</span>
+          </div>
+          <div class="swatch-meta">
+            <div class="swatch-name">Carbon Night 950</div>
+            <div class="swatch-token">--sn-obsidian-950</div>
+            <div class="swatch-codes"><span>#0B0F19</span><span>Card: #111827</span></div>
+            <p class="swatch-usage">Optional Dark Mode app background paired with `#111827` cards and `#1F2937` hairline borders.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Interactive Live High-Fidelity Prototype Preview -->
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">5. Live High-Fidelity Screen Previews (Your Savenow Screens)</h2>
+        <span class="section-desc">Toggle Light/Dark theme and Budget States below to see how the palette transforms your exact wireframe screens.</span>
+      </div>
+
+      <div class="preview-toolbar">
+        <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+          <span style="font-size:13px; font-weight:700; color:var(--sn-text-secondary);">Theme Mode:</span>
+          <div class="toggle-group">
+            <button class="toggle-btn active" id="btn-light" onclick="setTheme('light')">☀ Light Mode (Default)</button>
+            <button class="toggle-btn" id="btn-dark" onclick="setTheme('dark')">☾ Sleek Dark Mode</button>
+          </div>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+          <span style="font-size:13px; font-weight:700; color:var(--sn-text-secondary);">Home Ring State:</span>
+          <div class="toggle-group">
+            <button class="toggle-btn" id="state-healthy" onclick="setRingState('healthy')">Within Limit ($12.00)</button>
+            <button class="toggle-btn active" id="state-warning" onclick="setRingState('warning')">Nearing Limit ($17.40)</button>
+            <button class="toggle-btn" id="state-over" onclick="setRingState('over')">Over Limit ($21.20)</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="phones-grid">
+        <!-- Phone 1: Home (Within / Nearing / Over Limit) -->
+        <div class="phone-frame light-mode" id="phone-1">
+          <div class="phone-status">
+            <span>9:41</span>
+            <span>••• 5G 🔋</span>
+          </div>
+          <div class="phone-body">
+            <div class="app-topbar">
+              <div class="app-logo"><span class="app-logo-dot"></span>Savenow</div>
+              <div class="streak-pill" id="home-streak-pill">🔥 98-DAY STREAK</div>
+            </div>
+
+            <div class="ring-container">
+              <div class="budget-ring" id="home-ring" style="--ring-color: var(--sn-amber-500);">
+                <div class="ring-label">SPENT TODAY</div>
+                <div class="ring-amount" id="home-spent">$17.40</div>
+                <div class="ring-sub" id="home-sub">$2.60 under your $20 limit</div>
+              </div>
+            </div>
+
+            <div class="nudge-banner amber" id="home-nudge">
+              <span id="home-nudge-text">⚠️ $2.60 left today. Plan your dinner</span>
+              <span>›</span>
+            </div>
+
+            <div class="ui-card">
+              <div class="card-eyebrow">SAVED · MONTH</div>
+              <div class="saved-row">
+                <span class="saved-val">$190</span>
+                <span class="ontrack-pill">↑ on track</span>
+              </div>
+            </div>
+
+            <div class="ui-card">
+              <div class="card-eyebrow">LATEST EXPENSE</div>
+              <div class="expense-item">
+                <div class="expense-left">
+                  <div class="cat-avatar">BT</div>
+                  <div>
+                    <div style="font-size:14px; font-weight:700;">Bubble tea</div>
+                    <div style="font-size:11.5px; color:var(--phone-muted);">Grab · 6:40pm</div>
+                  </div>
+                </div>
+                <div style="font-size:15px; font-weight:700;">$3.40</div>
+              </div>
+            </div>
+          </div>
+          <div class="phone-nav">
+            <div class="nav-item active"><span>⌂</span><span>Home</span></div>
+            <div class="nav-item"><span>ılı</span><span>Insights</span></div>
+            <div class="nav-item"><span>⊕</span><span>Add</span></div>
+            <div class="nav-item"><span>☺</span><span>Social</span></div>
+            <div class="nav-item"><span>⚙</span><span>Settings</span></div>
+          </div>
+        </div>
+
+        <!-- Phone 2: Insights & Categories -->
+        <div class="phone-frame light-mode" id="phone-2">
+          <div class="phone-status">
+            <span>9:41</span>
+            <span>••• 5G 🔋</span>
+          </div>
+          <div class="phone-body">
+            <div class="app-topbar">
+              <div class="app-logo"><span class="app-logo-dot"></span>Insights</div>
+              <span style="font-size:11px; font-weight:700; padding:4px 10px; border-radius:99px; background:var(--phone-subtle); color:var(--phone-subtext);">SEP 2026</span>
+            </div>
+
+            <div class="ui-card">
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <span class="card-eyebrow" style="margin:0;">● CATEGORIES · AUG</span>
+                <span style="font-size:11.5px; color:var(--sn-emerald-500); font-weight:600;">View all ›</span>
+              </div>
+              <div class="cat-breakdown-row">
+                <div class="donut-chart">
+                  <div class="donut-hole">$584</div>
+                </div>
+                <div class="cat-legend">
+                  <div class="legend-item"><span><i class="legend-dot" style="background:var(--sn-cat-food)"></i>Food</span><strong>34% · $198</strong></div>
+                  <div class="legend-item"><span><i class="legend-dot" style="background:var(--sn-cat-transport)"></i>Transport</span><strong>22% · $128</strong></div>
+                  <div class="legend-item"><span><i class="legend-dot" style="background:var(--sn-cat-shopping)"></i>Shopping</span><strong>20% · $116</strong></div>
+                  <div class="legend-item"><span><i class="legend-dot" style="background:var(--sn-cat-bills)"></i>Bills</span><strong>14% · $81</strong></div>
+                  <div class="legend-item"><span><i class="legend-dot" style="background:var(--sn-cat-other)"></i>Other</span><strong>10% · $58</strong></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="ui-card">
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <div>
+                  <div class="card-eyebrow">TIMELINE · 7 DAYS</div>
+                  <div style="font-size:24px; font-weight:800; color:var(--sn-emerald-500);">–18%</div>
+                  <div style="font-size:11.5px; color:var(--phone-subtext);">less than last week</div>
+                </div>
+                <div class="mini-bars">
+                  <div class="mini-bar" style="height:26px;"></div>
+                  <div class="mini-bar" style="height:38px;"></div>
+                  <div class="mini-bar" style="height:22px;"></div>
+                  <div class="mini-bar" style="height:48px;"></div>
+                  <div class="mini-bar" style="height:32px;"></div>
+                  <div class="mini-bar" style="height:44px;"></div>
+                  <div class="mini-bar highlight" style="height:36px;"></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="ui-card">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+                <span class="card-eyebrow" style="margin:0;">◆ SMALL PURCHASES (&lt;$5)</span>
+                <span style="font-size:12px; font-weight:700; color:var(--sn-amber-500);">50%</span>
+              </div>
+              <div style="font-size:22px; font-weight:800;">$64.10</div>
+              <div style="font-size:11.5px; color:var(--phone-subtext); margin-bottom:8px;">27 purchases under $5 this week</div>
+              <div style="height:7px; background:var(--phone-subtle); border-radius:99px; overflow:hidden;">
+                <div style="width:50%; height:100%; background:var(--sn-amber-500); border-radius:99px;"></div>
+              </div>
+            </div>
+          </div>
+          <div class="phone-nav">
+            <div class="nav-item"><span>⌂</span><span>Home</span></div>
+            <div class="nav-item active"><span>ılı</span><span>Insights</span></div>
+            <div class="nav-item"><span>⊕</span><span>Add</span></div>
+            <div class="nav-item"><span>☺</span><span>Social</span></div>
+            <div class="nav-item"><span>⚙</span><span>Settings</span></div>
+          </div>
+        </div>
+
+        <!-- Phone 3: Budget Recovery & Social Streak -->
+        <div class="phone-frame light-mode" id="phone-3">
+          <div class="phone-status">
+            <span>9:41</span>
+            <span>••• 5G 🔋</span>
+          </div>
+          <div class="phone-body">
+            <div class="app-topbar">
+              <div class="app-logo"><span class="app-logo-dot"></span>Recovery &amp; Social</div>
+            </div>
+
+            <!-- Plan Applied Card -->
+            <div class="recovery-card">
+              <div class="card-eyebrow" style="color:var(--sn-indigo-500);">✓ CATCH-UP PLAN APPLIED</div>
+              <div style="font-size:22px; font-weight:800; margin-bottom:4px;">$19.70 a day</div>
+              <div style="font-size:12px; color:var(--phone-subtext); line-height:1.45;">
+                Savenow will use <strong>$19.70</strong> as your guide for the next 4 days ($0.30 × 4 days), then return to $20.00.
+              </div>
+              <button class="cta-btn">Done</button>
+            </div>
+
+            <!-- Social Streak Card -->
+            <div class="ui-card" style="text-align:center;">
+              <div class="card-eyebrow" style="color:var(--sn-streak-500);">🔥 CURRENT STREAK</div>
+              <div style="font-size:44px; font-weight:800; color:var(--sn-streak-500); line-height:1;">98</div>
+              <div style="font-size:12px; color:var(--phone-subtext); margin-top:4px;">days within your $20 daily budget</div>
+            </div>
+
+            <!-- Friends Activity -->
+            <div class="ui-card">
+              <div class="card-eyebrow">FRIENDS' ACTIVITY</div>
+              <div style="display:flex; justify-content:space-between; align-items:center; padding:6px 0; border-bottom:1px solid var(--phone-border);">
+                <div>
+                  <div style="font-size:13px; font-weight:700;">Maya reached 30 days</div>
+                  <div style="font-size:11px; color:var(--phone-muted);">Within budget · 2 hours ago</div>
+                </div>
+                <span class="cheer-btn">Cheer 👏</span>
+              </div>
+              <div style="display:flex; justify-content:space-between; align-items:center; padding-top:8px;">
+                <div>
+                  <div style="font-size:13px; font-weight:700;">Jon reached 7 days</div>
+                  <div style="font-size:11px; color:var(--phone-muted);">Within budget · Yesterday</div>
+                </div>
+                <span class="cheer-btn">Cheer 👏</span>
+              </div>
+            </div>
+          </div>
+          <div class="phone-nav">
+            <div class="nav-item"><span>⌂</span><span>Home</span></div>
+            <div class="nav-item"><span>ılı</span><span>Insights</span></div>
+            <div class="nav-item"><span>⊕</span><span>Add</span></div>
+            <div class="nav-item active"><span>☺</span><span>Social</span></div>
+            <div class="nav-item"><span>⚙</span><span>Settings</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Copyable CSS & Figma Variables Block -->
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">6. Ready-to-Use CSS Variables / Design Tokens</h2>
+        <span class="section-desc">Copy and paste directly into your high-fidelity prototype stylesheet or Figma Variables plugin.</span>
+      </div>
+      <div class="code-box">
+        <button class="copy-code-btn" onclick="copyAllTokens()">Copy All Tokens</button>
+<pre id="token-code">:root {
+  /* 1. Brand & Primary CTA */
+  --savenow-ink-primary:     #0F172A; /* Primary text, numerals & filled CTA buttons */
+  --savenow-emerald-primary: #10B981; /* Within-limit ring, active tab, positive bars */
+  --savenow-emerald-text:    #059669; /* "↑ on track" pill text, -18% timeline text */
+  --savenow-emerald-surface: #ECFDF5; /* Soft mint badge background */
+
+  /* 2. Daily Budget Ring & Nudge States */
+  --savenow-warning-amber:   #F59E0B; /* Nearing limit ring (80-99% used, e.g. $17.40) */
+  --savenow-warning-surface: #FFFBEB; /* "$2.60 left today. Plan your dinner" pill fill */
+  --savenow-warning-text:    #B45309; /* High-contrast amber alert text */
+
+  --savenow-over-rose:       #F43F5E; /* Over limit ring ($21.20) & swipe delete */
+  --savenow-over-surface:    #FFF1F2; /* "$1.20 over today. See a catch-up plan" pill */
+  --savenow-over-text:       #BE123C; /* Accessible crimson-rose alert text */
+
+  --savenow-recovery-indigo: #6366F1; /* 4-Day Budget Recovery ($19.70/day) & Goal trade-off */
+  --savenow-recovery-bg:     #EEF2FF; /* Plan applied card tint */
+
+  /* 3. Social Streak & 5 Spending Categories */
+  --savenow-streak-flame:    #F97316; /* 98-DAY STREAK badge & Cheer button */
+  --savenow-cat-food:        #F97316; /* Food (34% · $198.56) */
+  --savenow-cat-transport:   #0EA5E9; /* Transport (22% · $128.48) */
+  --savenow-cat-shopping:    #8B5CF6; /* Shopping (20% · $116.80) & 98-DAY BEST */
+  --savenow-cat-bills:       #6366F1; /* Bills (14% · $81.76) */
+  --savenow-cat-other:       #14B8A6; /* Other (10% · $58.40) */
+
+  /* 4. Light & Dark Mode Surfaces */
+  --savenow-canvas-light:    #F8FAFC;
+  --savenow-card-light:      #FFFFFF;
+  --savenow-border-light:    #E2E8F0;
+  --savenow-canvas-dark:     #0B0F19;
+  --savenow-card-dark:       #111827;
+  --savenow-border-dark:     #1F2937;
+}</pre>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="toast">Copied to clipboard!</div>
+
+  <script>
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.textContent = msg;
+      toast.classList.add('show');
+      clearTimeout(window.toastTimer);
+      window.toastTimer = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2200);
+    }
+
+    function copyHex(hex, name) {
+      navigator.clipboard.writeText(hex);
+      showToast(`Copied ${name} (${hex})`);
+    }
+
+    function copyAllTokens() {
+      const code = document.getElementById('token-code').innerText;
+      navigator.clipboard.writeText(code);
+      showToast('Copied all CSS design tokens!');
+    }
+
+    function setTheme(mode) {
+      const phones = [
+        document.getElementById('phone-1'),
+        document.getElementById('phone-2'),
+        document.getElementById('phone-3')
+      ];
+      phones.forEach(p => {
+        p.classList.remove('light-mode', 'dark-mode');
+        p.classList.add(mode + '-mode');
+      });
+      document.getElementById('btn-light').classList.toggle('active', mode === 'light');
+      document.getElementById('btn-dark').classList.toggle('active', mode === 'dark');
+    }
+
+    function setRingState(state) {
+      document.getElementById('state-healthy').classList.toggle('active', state === 'healthy');
+      document.getElementById('state-warning').classList.toggle('active', state === 'warning');
+      document.getElementById('state-over').classList.toggle('active', state === 'over');
+
+      const ring = document.getElementById('home-ring');
+      const spent = document.getElementById('home-spent');
+      const sub = document.getElementById('home-sub');
+      const nudge = document.getElementById('home-nudge');
+      const nudgeText = document.getElementById('home-nudge-text');
+      const streak = document.getElementById('home-streak-pill');
+
+      nudge.classList.remove('emerald', 'amber', 'rose');
+
+      if (state === 'healthy') {
+        ring.style.setProperty('--ring-color', 'var(--sn-emerald-500)');
+        spent.textContent = '$12.00';
+        sub.textContent = '$8.00 under your $20 limit';
+        nudge.classList.add('emerald');
+        nudge.style.setProperty('--nudge-bg', 'var(--sn-emerald-50)');
+        nudge.style.setProperty('--nudge-text', 'var(--sn-emerald-600)');
+        nudge.style.setProperty('--nudge-border', 'var(--sn-emerald-100)');
+        nudgeText.textContent = '✓ $8.00 left today. Comfortably on track';
+        streak.textContent = '🔥 98-DAY STREAK';
+        streak.classList.remove('broken');
+      } else if (state === 'warning') {
+        ring.style.setProperty('--ring-color', 'var(--sn-amber-500)');
+        spent.textContent = '$17.40';
+        sub.textContent = '$2.60 under your $20 limit';
+        nudge.classList.add('amber');
+        nudge.style.setProperty('--nudge-bg', 'var(--sn-amber-50)');
+        nudge.style.setProperty('--nudge-text', '#B45309');
+        nudge.style.setProperty('--nudge-border', '#FDE68A');
+        nudgeText.textContent = '⚠️ $2.60 left today. Plan your dinner';
+        streak.textContent = '🔥 98-DAY STREAK';
+        streak.classList.remove('broken');
+      } else if (state === 'over') {
+        ring.style.setProperty('--ring-color', 'var(--sn-rose-500)');
+        spent.textContent = '$21.20';
+        sub.textContent = '$1.20 over your $20 limit';
+        nudge.classList.add('rose');
+        nudge.style.setProperty('--nudge-bg', 'var(--sn-rose-50)');
+        nudge.style.setProperty('--nudge-text', '#BE123C');
+        nudge.style.setProperty('--nudge-border', '#FECDD3');
+        nudgeText.textContent = '↻ $1.20 over today. See a catch-up plan';
+        streak.textContent = '🏆 98-DAY BEST';
+        streak.classList.add('broken');
+      }
+    }
+  </script>
+</body>
+</html>
