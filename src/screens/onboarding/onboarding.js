@@ -25,7 +25,7 @@ window.App.registerScreen('onboarding', {
               <!-- Floating Coin Icon -->
               <g transform="translate(68, 6)">
                 <circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="3.5" fill="var(--sn-bg-card)"/>
-                <text x="20" y="26" font-family="'Inter', sans-serif" font-size="20" font-weight="900" text-anchor="middle" fill="currentColor">$</text>
+                <text x="20" y="26" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro', sans-serif" font-size="20" font-weight="900" text-anchor="middle" fill="currentColor">$</text>
               </g>
             </svg>
           </div>

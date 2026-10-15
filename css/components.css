@@ -1,73 +1,108 @@
 /**
- * Savenow Components Stylesheet
- * Buttons, Inputs, Steppers, Fixed Bottom Nav Bar, Modals, Toasts
+ * Savenow Components Stylesheet — Apple iOS HIG Specifications
+ * Inset Grouped Tables, SF Symbol Icons, Segmented Controls, Switches, iOS Tab Bar & Sheets
  */
 
-/* Standard Buttons */
+/* ==============================================================
+   1. iOS Buttons (UIButton Styles)
+   ============================================================== */
 .btn {
-  height: 48px;
-  border-radius: var(--radius-lg);
-  font-family: inherit;
-  font-size: 15px;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  border: 1.5px solid transparent;
+  height: 50px;
+  border-radius: var(--ios-radius-btn);
+  font-family: var(--font-sans);
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.4px;
+  border: none;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  transition: all 0.16s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.15s ease;
   text-decoration: none;
   flex: 1;
+  padding: 0 16px;
 }
 
 .btn:active {
-  transform: scale(0.975);
+  transform: scale(0.97);
+  opacity: 0.85;
 }
 
+/* iOS Prominent Filled Button */
 .btn-primary {
   background-color: var(--sn-obsidian-900);
   color: #FFFFFF;
-  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.15);
 }
 
 [data-theme="dark"] .btn-primary {
   background-color: #FFFFFF;
-  color: #0B0F19;
+  color: #000000;
 }
 
-.btn-outline {
-  background-color: var(--sn-bg-card);
-  border-color: var(--sn-border-strong);
-  color: var(--sn-text-primary);
-}
-
-.btn-outline:hover {
-  background-color: var(--sn-bg-subtle);
-}
-
+/* iOS Tinted Emerald Button */
 .btn-emerald {
   background-color: var(--sn-emerald-500);
   color: #0B0F19;
-  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.25);
+  font-weight: 700;
 }
 
-/* Stepper */
+/* iOS Gray / Secondary Button */
+.btn-outline {
+  background-color: var(--ios-tertiary-fill);
+  color: var(--sn-text-primary);
+}
+
+[data-theme="dark"] .btn-outline {
+  background-color: var(--ios-tertiary-fill);
+  color: #FFFFFF;
+}
+
+/* iOS Hero Buttons (Onboarding) */
+.btn-hero {
+  height: 64px;
+  border-radius: var(--ios-radius-card);
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -0.4px;
+  max-width: 295px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.btn-hero-primary {
+  background-color: var(--sn-obsidian-900);
+  color: #FFFFFF;
+}
+
+[data-theme="dark"] .btn-hero-primary {
+  background-color: #FFFFFF;
+  color: #000000;
+}
+
+.btn-hero-outline {
+  background-color: var(--ios-tertiary-fill);
+  color: var(--sn-text-primary);
+}
+
+/* ==============================================================
+   2. iOS Stepper Indicator (Setup Flow)
+   ============================================================== */
 .step-stepper {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 6px;
   margin-top: 6px;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 
 .step-dot {
-  width: 22px;
+  width: 20px;
   height: 4px;
-  border-radius: var(--radius-pill);
-  background: var(--sn-border-hairline);
+  border-radius: var(--ios-radius-capsule);
+  background: var(--ios-gray-4);
   transition: all 0.25s ease;
 }
 
@@ -86,133 +121,304 @@
 
 .setup-header-group {
   text-align: center;
-  margin-bottom: 18px;
+  margin-bottom: 20px;
+  padding: 0 12px;
 }
 
 .setup-eyebrow {
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.12em;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--sn-text-muted);
-  margin-bottom: 6px;
+  color: var(--ios-gray-1);
+  margin-bottom: 4px;
 }
 
 .setup-title {
-  font-size: 22px;
+  font-size: 26px;
   font-weight: 800;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.5px;
   color: var(--sn-text-primary);
-  margin-bottom: 4px;
+  margin-bottom: 6px;
   line-height: 1.2;
 }
 
 .setup-subtitle {
+  font-size: 14px;
+  color: var(--sn-text-secondary);
+  line-height: 1.4;
+  letter-spacing: -0.2px;
+}
+
+/* ==============================================================
+   3. iOS Inset Grouped Table View (UITableViewStyleInsetGrouped)
+   ============================================================== */
+.ios-section-header {
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: -0.08px;
+  color: var(--ios-gray-1);
+  padding: 16px 16px 6px;
+  margin: 0;
+}
+
+.ios-inset-group {
+  background: var(--ios-secondary-grouped-bg);
+  border-radius: var(--ios-radius-card);
+  margin: 0 0 18px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.ios-list-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 48px;
+  padding: 12px 16px;
+  position: relative;
+  cursor: pointer;
+  background: transparent;
+  text-decoration: none;
+  color: inherit;
+  transition: background-color 0.15s ease;
+}
+
+.ios-list-row:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 56px;
+  right: 0;
+  height: 0.5px;
+  background-color: var(--ios-separator);
+}
+
+.ios-list-row:active {
+  background-color: var(--ios-fill);
+}
+
+.ios-row-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex: 1;
+}
+
+.ios-icon-box {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  flex-shrink: 0;
+}
+
+.ios-icon-box.emerald { background: var(--sn-emerald-500); }
+.ios-icon-box.blue { background: var(--ios-system-blue); }
+.ios-icon-box.orange { background: var(--ios-system-orange); }
+.ios-icon-box.purple { background: var(--ios-system-purple); }
+.ios-icon-box.red { background: var(--ios-system-red); }
+.ios-icon-box.gray { background: var(--ios-gray-1); }
+
+.ios-row-title {
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.3px;
+  color: var(--sn-text-primary);
+}
+
+.ios-row-sub {
   font-size: 13px;
   color: var(--sn-text-secondary);
-  font-weight: 500;
-  line-height: 1.4;
+  letter-spacing: -0.1px;
+  margin-top: 1px;
 }
 
-/* Form Inputs */
-.form-section-title {
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--sn-text-muted);
-  margin-top: 14px;
-  margin-bottom: 8px;
+.ios-row-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ios-gray-2);
+  font-size: 15px;
 }
 
-.input-outline-box {
+.ios-disclosure {
+  width: 8px;
+  height: 13px;
+  color: var(--ios-gray-3);
+  stroke-width: 2.5;
+}
+
+/* ==============================================================
+   4. iOS Segmented Control (UISegmentedControl)
+   ============================================================== */
+.ios-segmented-control {
+  display: flex;
+  background: var(--ios-tertiary-fill);
+  border-radius: 9px;
+  padding: 2px;
+  margin: 8px 0 16px;
   position: relative;
-  background: var(--sn-bg-card);
-  border: 1.5px solid var(--sn-border-strong);
-  border-radius: var(--radius-md);
-  padding: 8px 12px;
-  margin-bottom: 10px;
-  transition: border-color 0.16s ease, box-shadow 0.16s ease;
+}
+
+.ios-segment-btn {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--sn-text-primary);
+  padding: 6px 10px;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  text-align: center;
+  white-space: nowrap;
+}
+
+.ios-segment-btn.active {
+  background: var(--ios-secondary-grouped-bg);
+  font-weight: 600;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+/* ==============================================================
+   5. iOS Switch (UISwitch)
+   ============================================================== */
+.ios-switch {
+  position: relative;
+  display: inline-block;
+  width: 51px;
+  height: 31px;
+  flex-shrink: 0;
+}
+
+.ios-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.ios-switch-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--ios-fill);
+  transition: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 31px;
+}
+
+.ios-switch-slider::before {
+  position: absolute;
+  content: "";
+  height: 27px;
+  width: 27px;
+  left: 2px;
+  bottom: 2px;
+  background-color: #FFFFFF;
+  transition: 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 50%;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15), 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+.ios-switch input:checked + .ios-switch-slider {
+  background-color: var(--sn-emerald-500);
+}
+
+.ios-switch input:checked + .ios-switch-slider::before {
+  transform: translateX(20px);
+}
+
+/* ==============================================================
+   6. Form Inputs & Floating Outlines (iOS Style)
+   ============================================================== */
+.input-outline-box {
+  background: var(--ios-secondary-grouped-bg);
+  border: 1px solid var(--ios-separator);
+  border-radius: var(--ios-radius-btn);
+  padding: 10px 14px;
+  margin-bottom: 12px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.18s ease;
 }
 
 .input-outline-box:focus-within {
-  border-color: var(--sn-obsidian-900);
-  box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.08);
-}
-
-[data-theme="dark"] .input-outline-box:focus-within {
-  border-color: var(--sn-emerald-400);
-  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+  border-color: var(--sn-emerald-500);
 }
 
 .input-outline-label {
-  position: absolute;
-  top: -8px;
-  left: 10px;
-  background: var(--sn-bg-card);
-  padding: 0 6px;
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.06em;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--sn-text-secondary);
-  border-radius: 4px;
+  color: var(--ios-gray-1);
+  margin-bottom: 2px;
 }
 
 .input-outline-field {
   width: 100%;
+  background: transparent;
   border: none;
   outline: none;
-  background: transparent;
-  font-family: inherit;
-  font-size: 15.5px;
-  font-weight: 700;
+  font-family: var(--font-sans);
+  font-size: 16px;
+  font-weight: 600;
   color: var(--sn-text-primary);
 }
 
 .form-grid-2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 10px;
+  gap: 12px;
 }
 
-.budget-row-item {
+.category-dropdown-trigger {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 8px;
+  cursor: pointer;
+  padding-top: 2px;
 }
 
-.budget-row-item .input-outline-box {
-  width: 125px;
-  margin-bottom: 0;
-  flex-shrink: 0;
+.category-dropdown-value {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--sn-text-primary);
 }
 
-.budget-desc-text {
-  font-size: 12.5px;
-  color: var(--sn-text-secondary);
-  font-weight: 500;
-}
-
-/* ==========================================================================
-   BOTTOM NAVIGATION BAR: ACTIVE ACROSS ALL MAIN TABS
-   ========================================================================== */
+/* ==============================================================
+   7. iOS Tab Bar (UITabBar with Translucent Blur & Home Indicator)
+   ============================================================== */
 .bottom-nav-bar {
   display: none;
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 68px;
-  background: var(--sn-bg-card);
-  border-top: 1px solid var(--sn-border-hairline);
-  align-items: center;
+  height: 83px; /* 49px tab content + 34px safe area */
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: var(--ios-blur-material);
+  -webkit-backdrop-filter: var(--ios-blur-material);
+  border-top: 0.5px solid var(--ios-separator);
+  align-items: flex-start;
   justify-content: space-around;
-  padding: 0 8px max(8px, env(safe-area-inset-bottom, 8px));
+  padding: 6px 8px 0;
   z-index: 60;
-  box-shadow: 0 -4px 16px rgba(15, 23, 42, 0.04);
+  box-sizing: border-box;
+}
+
+[data-theme="dark"] .bottom-nav-bar {
+  background: rgba(28, 28, 30, 0.88);
 }
 
 .nav-tab-btn {
@@ -220,49 +426,39 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 3px;
+  gap: 2px;
   background: none;
   border: none;
   cursor: pointer;
-  color: var(--sn-text-muted);
-  font-size: 10.5px;
-  font-weight: 700;
-  padding: 4px 10px;
-  border-radius: var(--radius-md);
+  color: var(--ios-gray-1);
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: var(--ios-radius-btn);
   position: relative;
-  transition: all 0.16s ease;
+  transition: all 0.15s ease;
+  flex: 1;
 }
 
 .nav-tab-btn:active {
-  transform: scale(0.92);
+  opacity: 0.5;
 }
 
 .nav-tab-btn.active {
-  color: var(--sn-text-primary);
+  color: var(--sn-emerald-600);
 }
 
-.nav-tab-btn.active::after {
-  content: "";
-  position: absolute;
-  bottom: -2px;
-  width: 16px;
-  height: 2.5px;
-  border-radius: var(--radius-pill);
-  background: var(--sn-obsidian-900);
-}
-
-[data-theme="dark"] .nav-tab-btn.active::after {
-  background: #FFFFFF;
+[data-theme="dark"] .nav-tab-btn.active {
+  color: var(--sn-emerald-400);
 }
 
 .nav-tab-icon {
-  width: 20px;
-  height: 20px;
-  stroke-width: 2.2;
+  width: 22px;
+  height: 22px;
 }
 
 .nav-center-add {
-  transform: translateY(-5px);
+  transform: translateY(-8px);
 }
 
 .nav-add-circle {
@@ -274,28 +470,30 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: var(--shadow-md);
-  border: 2px solid var(--sn-bg-card);
-  transition: all 0.16s ease;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.25);
+  border: 2px solid var(--ios-secondary-grouped-bg);
+  transition: transform 0.15s ease;
 }
 
 [data-theme="dark"] .nav-add-circle {
   background: var(--sn-emerald-500);
-  color: #0B0F19;
+  color: #000000;
 }
 
 .nav-center-add:active .nav-add-circle {
   transform: scale(0.92);
 }
 
-/* Modals & Bottom Sheets */
+/* ==============================================================
+   8. iOS Sheet Modal (UISheetPresentationController)
+   ============================================================== */
 .modal-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(11, 15, 25, 0.65);
+  background: rgba(0, 0, 0, 0.45);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   z-index: 100;
@@ -303,7 +501,7 @@
   align-items: flex-end;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.22s ease;
+  transition: opacity 0.25s ease;
 }
 
 .modal-overlay.open {
@@ -313,13 +511,13 @@
 
 .bottom-sheet {
   width: 100%;
-  background: var(--sn-bg-card);
-  border-radius: 24px 24px 0 0;
-  padding: 16px 20px max(24px, env(safe-area-inset-bottom, 20px));
+  background: var(--ios-secondary-grouped-bg);
+  border-radius: var(--ios-radius-sheet) var(--ios-radius-sheet) 0 0;
+  padding: 12px 18px max(24px, env(safe-area-inset-bottom, 24px));
   box-shadow: var(--shadow-float);
   transform: translateY(100%);
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  max-height: 80%;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  max-height: 85%;
   overflow-y: auto;
 }
 
@@ -329,49 +527,66 @@
 
 .sheet-handle-bar {
   width: 36px;
-  height: 4px;
-  border-radius: var(--radius-pill);
-  background: var(--sn-border-strong);
+  height: 5px;
+  border-radius: 2.5px;
+  background: var(--ios-gray-3);
   margin: 0 auto 16px;
 }
 
 .sheet-title {
-  font-size: 18px;
-  font-weight: 800;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.4px;
   color: var(--sn-text-primary);
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
 .sheet-subtitle {
-  font-size: 12.5px;
+  font-size: 13px;
   color: var(--sn-text-secondary);
   margin-bottom: 16px;
 }
 
+/* ==============================================================
+   9. iOS Dynamic Notification / Island Toast
+   ============================================================== */
 .toast-notice {
   position: absolute;
-  bottom: 80px;
+  top: 54px;
   left: 50%;
-  transform: translateX(-50%) translateY(20px);
-  background: var(--sn-obsidian-900);
+  transform: translateX(-50%) translateY(-20px);
+  background: rgba(15, 23, 42, 0.94);
+  backdrop-filter: var(--ios-blur-material);
+  -webkit-backdrop-filter: var(--ios-blur-material);
   color: #FFFFFF;
-  padding: 8px 16px;
-  border-radius: var(--radius-pill);
-  font-size: 12px;
-  font-weight: 700;
-  box-shadow: var(--shadow-lg);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 10px 18px;
+  border-radius: var(--ios-radius-capsule);
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   opacity: 0;
   pointer-events: none;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   z-index: 150;
   white-space: nowrap;
+}
+
+[data-theme="dark"] .toast-notice {
+  background: rgba(44, 44, 46, 0.94);
 }
 
 .toast-notice.show {
   opacity: 1;
   transform: translateX(-50%) translateY(0);
+}
+
+/* Footer Action Buttons on Setup Screens */
+.screen-footer-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 16px;
 }

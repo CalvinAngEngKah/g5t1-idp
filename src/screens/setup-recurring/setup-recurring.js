@@ -11,7 +11,17 @@ window.App.registerScreen('setup-3', {
   render() {
     return `
       <section class="screen" id="screen-setup-3">
-        <div class="screen-scrollable-body">
+        <header class="ios-nav-bar">
+          <button class="ios-nav-back" data-goto="screen-setup-2">
+            <svg width="12" height="20" viewBox="0 0 12 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M10 2L2 10L10 18"/>
+            </svg>
+            <span>Back</span>
+          </button>
+          <span class="ios-nav-title">Recurring Expenses</span>
+          <span style="width: 48px;"></span>
+        </header>
+        <div class="screen-scrollable-body" style="padding-top: 0;">
           <div class="step-stepper">
             <div class="step-dot done"></div>
             <div class="step-dot done"></div>

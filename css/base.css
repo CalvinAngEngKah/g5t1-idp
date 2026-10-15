@@ -1,6 +1,6 @@
 /**
- * Savenow Base Stylesheet
- * Reset, Edge-to-edge mobile viewport, typography, and screen transitions
+ * Savenow Base Stylesheet — Apple iOS Human Interface Guidelines (HIG)
+ * Edge-to-edge mobile viewport, native iOS typography, safe-area layout & transitions
  */
 
 *, *::before, *::after {
@@ -10,13 +10,16 @@
   -webkit-tap-highlight-color: transparent;
 }
 
+html, body, button, input, select, textarea, optgroup {
+  font-family: var(--font-sans);
+}
+
 html, body {
   width: 100%;
   height: 100%;
-  font-family: var(--font-sans);
-  background-color: var(--sn-bg-canvas);
+  background-color: var(--ios-grouped-bg);
   color: var(--sn-text-primary);
-  line-height: 1.45;
+  line-height: 1.4;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow: hidden;
@@ -28,37 +31,40 @@ html, body {
   width: 100%;
   height: 100dvh;
   display: flex;
-  background-color: var(--sn-bg-canvas);
+  background-color: var(--ios-grouped-bg);
   position: relative;
   overflow: hidden;
+  justify-content: center;
 }
 
 .mobile-app-root {
   width: 100%;
   height: 100dvh;
-  background-color: var(--sn-bg-canvas);
+  background-color: var(--ios-grouped-bg);
   position: relative;
   display: flex;
   flex-direction: column;
   overflow: hidden;
 }
-
+/* Discrete Floating Theme Switcher */
 .app-micro-header {
   position: absolute;
   top: 10px;
   right: 14px;
-  z-index: 90;
+  z-index: 95;
   pointer-events: auto;
 }
 
 .theme-micro-toggle {
-  background: var(--sn-bg-card);
-  border: 1px solid var(--sn-border-strong);
-  color: var(--sn-text-secondary);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: var(--ios-blur-material);
+  -webkit-backdrop-filter: var(--ios-blur-material);
+  border: 0.5px solid var(--ios-separator);
+  color: var(--sn-text-primary);
   font-size: 11.5px;
-  font-weight: 700;
-  padding: 5px 10px;
-  border-radius: var(--radius-pill);
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: var(--ios-radius-capsule);
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -67,15 +73,15 @@ html, body {
   transition: all 0.16s ease;
 }
 
-.theme-micro-toggle:hover {
-  color: var(--sn-text-primary);
-  border-color: var(--sn-obsidian-900);
+[data-theme="dark"] .theme-micro-toggle {
+  background: rgba(44, 44, 46, 0.85);
 }
 
 .theme-micro-toggle:active {
-  transform: scale(0.95);
+  transform: scale(0.94);
 }
 
+/* Viewport & Screen Transitions */
 .screens-viewport {
   flex: 1;
   position: relative;
@@ -95,9 +101,9 @@ html, body {
   flex-direction: column;
   opacity: 0;
   pointer-events: none;
-  transform: translateX(25px);
-  transition: opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1), transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
-  background-color: var(--sn-bg-canvas);
+  transform: translateX(100%);
+  transition: opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1), transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  background-color: var(--ios-grouped-bg);
 }
 
 .screen.active {
@@ -107,70 +113,108 @@ html, body {
 }
 
 .screen.sliding-back {
-  transform: translateX(-25px);
-}
-
-.app-tab-screen {
-  padding: 16px 18px 84px;
-  overflow-y: auto;
-  overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
-}
-
-.app-tab-screen::-webkit-scrollbar {
-  display: none;
-}
-
-.tab-page-title {
-  font-size: 28px;
-  font-weight: 800;
-  letter-spacing: -0.04em;
-  color: var(--sn-text-primary);
-  margin-top: 4px;
-  margin-bottom: 2px;
-}
-
-.tab-page-subtitle {
-  font-size: 13.5px;
-  color: var(--sn-text-secondary);
-  margin-bottom: 18px;
-  font-weight: 500;
-}
-
-.date-period-pill {
-  padding: 5px 12px;
-  border-radius: var(--radius-pill);
-  background: var(--sn-bg-card);
-  border: 1.5px solid var(--sn-obsidian-900);
-  font-size: 11.5px;
-  font-weight: 800;
-  letter-spacing: 0.04em;
-}
-
-[data-theme="dark"] .date-period-pill {
-  border-color: #475569;
+  opacity: 0.7;
+  transform: translateX(-20%);
 }
 
 .screen-scrollable-body {
   flex: 1;
   overflow-y: auto;
   overflow-x: hidden;
+  padding: 12px 16px 90px;
   -webkit-overflow-scrolling: touch;
-  padding: 18px 20px 12px;
+  display: flex;
+  flex-direction: column;
 }
 
-.screen-scrollable-body::-webkit-scrollbar {
-  display: none;
+.app-tab-screen {
+  padding-bottom: 90px;
 }
 
-.screen-footer-actions {
+/* ==============================================================
+   iOS Navigation Bar (UINavigationBar)
+   ============================================================== */
+.ios-nav-bar {
+  height: var(--ios-nav-height);
   display: flex;
   align-items: center;
-  gap: 12px;
-  width: 100%;
-  padding: 12px 20px max(18px, env(safe-area-inset-bottom, 16px));
-  background: var(--sn-bg-canvas);
-  border-top: 1px solid var(--sn-border-hairline);
+  justify-content: space-between;
+  padding: 0 16px;
   flex-shrink: 0;
-  z-index: 40;
+  background: transparent;
+  position: relative;
+}
+
+.ios-nav-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--sn-emerald-600);
+  background: none;
+  border: none;
+  font-family: var(--font-sans);
+  font-size: 17px;
+  font-weight: 400;
+  cursor: pointer;
+  padding: 4px 0;
+  letter-spacing: -0.4px;
+}
+
+.ios-nav-back:active {
+  opacity: 0.4;
+}
+
+.ios-nav-title {
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.4px;
+  color: var(--sn-text-primary);
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+
+.ios-large-title {
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: -0.4px;
+  color: var(--sn-text-primary);
+  padding: 4px 16px 12px;
+  line-height: 1.15;
+}
+
+.ios-large-subtitle {
+  font-size: 14px;
+  color: var(--sn-text-secondary);
+  padding: 0 16px 16px;
+  letter-spacing: -0.2px;
+}
+
+/* ==============================================================
+   iOS Home Indicator Bar
+   ============================================================== */
+.ios-home-indicator-wrap {
+  width: 100%;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 70;
+}
+
+.ios-home-indicator {
+  width: 134px;
+  height: 5px;
+  border-radius: 100px;
+  background: #000000;
+  opacity: 0.85;
+}
+
+[data-theme="dark"] .ios-home-indicator {
+  background: #FFFFFF;
 }

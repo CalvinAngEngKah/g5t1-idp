@@ -3,38 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Savenow — Asset & Component Library</title>
+  <title>Savenow — Apple iOS HIG Asset &amp; Component Library</title>
   
-  <!-- Typography from Design System -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- Native iOS Typography (San Francisco / SF Pro system font stack) -->
   
-  <!-- Core Design Tokens & Component Styles -->
+  <!-- Core iOS HIG Design Tokens & Component Styles -->
   <link rel="stylesheet" href="css/variables.css">
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/components.css">
 
-  <!-- Modular Screen Styles -->
-  <link rel="stylesheet" href="src/screens/onboarding/onboarding.css">
-  <link rel="stylesheet" href="src/screens/setup-banks/setup-banks.css">
-  <link rel="stylesheet" href="src/screens/setup-goal/setup-goal.css">
-  <link rel="stylesheet" href="src/screens/setup-recurring/setup-recurring.css">
-  <link rel="stylesheet" href="src/screens/setup-socials/setup-socials.css">
-  <link rel="stylesheet" href="src/screens/home/home.css">
-  <link rel="stylesheet" href="src/screens/insights/insights.css">
-  <link rel="stylesheet" href="src/screens/social/social.css">
-  <link rel="stylesheet" href="src/screens/settings/settings.css">
-
   <style>
-    /* Dedicated Showcase Styles for asset.html */
+    /* Dedicated Showcase Styles for iOS HIG Library */
     body {
-      background: var(--sn-bg-canvas);
+      background: var(--ios-grouped-bg);
       color: var(--sn-text-primary);
-      font-family: var(--sn-font-sans);
+      font-family: var(--font-sans);
       margin: 0;
       padding: 0;
-      line-height: 1.5;
+      line-height: 1.4;
+      -webkit-font-smoothing: antialiased;
     }
 
     .doc-layout {
@@ -44,9 +31,9 @@
 
     /* Sidebar Navigation */
     .doc-sidebar {
-      width: 280px;
-      background: var(--sn-bg-card);
-      border-right: 1px solid var(--sn-border-light);
+      width: 290px;
+      background: var(--ios-secondary-grouped-bg);
+      border-right: 0.5px solid var(--ios-separator);
       position: sticky;
       top: 0;
       height: 100vh;
@@ -55,7 +42,8 @@
       flex-shrink: 0;
       display: flex;
       flex-direction: column;
-      gap: 24px;
+      gap: 20px;
+      box-sizing: border-box;
     }
 
     .doc-brand {
@@ -65,10 +53,9 @@
     }
 
     .doc-brand-title {
-      font-size: 18px;
+      font-size: 19px;
       font-weight: 800;
-      letter-spacing: -0.02em;
-      color: var(--sn-obsidian-900);
+      letter-spacing: -0.4px;
       margin: 0;
     }
 
@@ -78,10 +65,10 @@
       font-weight: 700;
       text-transform: uppercase;
       background: var(--sn-emerald-100);
-      color: var(--sn-emerald-700);
+      color: var(--sn-emerald-600);
       padding: 2px 8px;
-      border-radius: var(--sn-radius-full);
-      margin-top: 4px;
+      border-radius: var(--ios-radius-capsule);
+      margin-top: 3px;
     }
 
     .doc-search-box {
@@ -91,15 +78,15 @@
     .doc-search-input {
       width: 100%;
       box-sizing: border-box;
-      padding: 10px 14px 10px 34px;
-      border: 1px solid var(--sn-border-strong);
-      border-radius: var(--sn-radius-md);
-      font-family: var(--sn-font-sans);
-      font-size: 13px;
-      background: var(--sn-bg-canvas);
+      padding: 9px 12px 9px 34px;
+      border: 0.5px solid var(--ios-separator);
+      border-radius: 10px;
+      font-family: var(--font-sans);
+      font-size: 14px;
+      background: var(--ios-tertiary-grouped-bg);
       color: var(--sn-text-primary);
       outline: none;
-      transition: border-color var(--sn-transition-fast);
+      transition: border-color 0.18s ease;
     }
 
     .doc-search-input:focus {
@@ -109,8 +96,8 @@
     .doc-search-icon {
       position: absolute;
       left: 10px;
-      top: 11px;
-      color: var(--sn-text-muted);
+      top: 10px;
+      color: var(--ios-gray-1);
     }
 
     .doc-nav-list {
@@ -119,7 +106,7 @@
       margin: 0;
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 3px;
     }
 
     .doc-nav-item a {
@@ -127,33 +114,34 @@
       align-items: center;
       justify-content: space-between;
       padding: 8px 12px;
-      font-size: 13px;
-      font-weight: 600;
+      font-size: 14px;
+      font-weight: 500;
       color: var(--sn-text-secondary);
       text-decoration: none;
-      border-radius: var(--sn-radius-sm);
-      transition: all var(--sn-transition-fast);
+      border-radius: 8px;
+      transition: all 0.15s ease;
     }
 
     .doc-nav-item a:hover,
     .doc-nav-item a.active {
-      color: var(--sn-obsidian-900);
-      background: var(--sn-border-light);
+      color: var(--sn-text-primary);
+      background: var(--ios-fill);
+      font-weight: 600;
     }
 
     .doc-nav-counter {
       font-size: 11px;
-      color: var(--sn-text-muted);
-      background: var(--sn-bg-canvas);
+      color: var(--ios-gray-1);
+      background: var(--ios-tertiary-grouped-bg);
       padding: 1px 6px;
-      border-radius: var(--sn-radius-full);
+      border-radius: var(--ios-radius-capsule);
     }
 
     /* Main Content Area */
     .doc-main {
       flex: 1;
       padding: 40px 48px 100px;
-      max-width: 1100px;
+      max-width: 1120px;
       box-sizing: border-box;
     }
 
@@ -161,15 +149,15 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      border-bottom: 1px solid var(--sn-border-light);
+      border-bottom: 0.5px solid var(--ios-separator);
       padding-bottom: 24px;
-      margin-bottom: 40px;
+      margin-bottom: 36px;
     }
 
     .doc-page-title {
-      font-size: 32px;
-      font-weight: 900;
-      letter-spacing: -0.03em;
+      font-size: 34px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
       margin: 0 0 8px;
     }
 
@@ -177,42 +165,43 @@
       font-size: 15px;
       color: var(--sn-text-secondary);
       margin: 0;
-      max-width: 600px;
+      max-width: 640px;
+      line-height: 1.5;
     }
 
     .doc-theme-btn {
       padding: 8px 16px;
-      background: var(--sn-bg-card);
-      border: 1px solid var(--sn-border-strong);
-      border-radius: var(--sn-radius-full);
+      background: var(--ios-secondary-grouped-bg);
+      border: 0.5px solid var(--ios-separator);
+      border-radius: var(--ios-radius-capsule);
       font-size: 13px;
-      font-weight: 700;
+      font-weight: 600;
       cursor: pointer;
       color: var(--sn-text-primary);
       display: flex;
       align-items: center;
       gap: 8px;
-      box-shadow: var(--sn-shadow-sm);
+      box-shadow: var(--shadow-sm);
     }
 
     /* Section & Component Blocks */
     .doc-section {
-      margin-bottom: 64px;
+      margin-bottom: 56px;
       scroll-margin-top: 32px;
     }
 
     .doc-section-header {
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
 
     .doc-section-title {
       font-size: 22px;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      margin: 0 0 6px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      margin: 0 0 4px;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
 
     .doc-section-desc {
@@ -221,56 +210,57 @@
       margin: 0;
     }
 
-    /* Component Card Grid */
+    /* Grid & Cards */
     .doc-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-      gap: 24px;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 20px;
     }
 
     .doc-card {
-      background: var(--sn-bg-card);
-      border: 1px solid var(--sn-border-light);
-      border-radius: var(--sn-radius-lg);
+      background: var(--ios-secondary-grouped-bg);
+      border: 0.5px solid var(--ios-separator);
+      border-radius: var(--ios-radius-card);
       overflow: hidden;
-      box-shadow: var(--sn-shadow-sm);
+      box-shadow: var(--shadow-sm);
       display: flex;
       flex-direction: column;
     }
 
     .doc-card-header {
-      padding: 16px 20px;
-      border-bottom: 1px solid var(--sn-border-light);
+      padding: 12px 16px;
+      border-bottom: 0.5px solid var(--ios-separator);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: var(--sn-bg-canvas);
+      background: var(--ios-tertiary-grouped-bg);
     }
 
     .doc-card-title {
       font-size: 14px;
-      font-weight: 700;
+      font-weight: 600;
+      letter-spacing: -0.2px;
       margin: 0;
     }
 
     .doc-card-tag {
       font-size: 11px;
-      font-family: var(--sn-font-mono);
-      background: var(--sn-border-light);
+      font-family: var(--font-mono);
+      background: var(--ios-fill);
       color: var(--sn-text-secondary);
       padding: 2px 8px;
-      border-radius: var(--sn-radius-sm);
+      border-radius: 5px;
     }
 
     .doc-preview-area {
-      padding: 28px 20px;
+      padding: 24px 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      background: var(--sn-bg-card);
+      background: var(--ios-secondary-grouped-bg);
       flex: 1;
-      min-height: 120px;
+      min-height: 110px;
       position: relative;
     }
 
@@ -278,34 +268,36 @@
       max-width: 375px;
       margin: 0 auto;
       width: 100%;
-      border-radius: 12px;
-      border: 1px dashed var(--sn-border-strong);
-      padding: 20px 16px;
+      border-radius: 14px;
+      border: 0.5px dashed var(--ios-separator);
+      padding: 16px;
+      background: var(--ios-grouped-bg);
+      box-sizing: border-box;
     }
 
     .doc-code-footer {
-      border-top: 1px solid var(--sn-border-light);
-      padding: 10px 16px;
-      background: var(--sn-bg-canvas);
+      border-top: 0.5px solid var(--ios-separator);
+      padding: 8px 16px;
+      background: var(--ios-tertiary-grouped-bg);
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-end;
       align-items: center;
     }
 
     .btn-copy-code {
       background: transparent;
-      border: 1px solid var(--sn-border-strong);
+      border: 0.5px solid var(--ios-separator);
       color: var(--sn-text-secondary);
-      font-family: var(--sn-font-sans);
+      font-family: var(--font-sans);
       font-size: 12px;
       font-weight: 600;
       padding: 4px 10px;
-      border-radius: var(--sn-radius-sm);
+      border-radius: 6px;
       cursor: pointer;
       display: flex;
       align-items: center;
       gap: 6px;
-      transition: all var(--sn-transition-fast);
+      transition: all 0.15s ease;
     }
 
     .btn-copy-code:hover {
@@ -314,60 +306,90 @@
       border-color: var(--sn-obsidian-900);
     }
 
-    /* Color Swatch Display */
+    /* SF Symbols Grid */
+    .symbols-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 12px;
+    }
+
+    .symbol-card {
+      background: var(--ios-secondary-grouped-bg);
+      border: 0.5px solid var(--ios-separator);
+      border-radius: 10px;
+      padding: 14px 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .symbol-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--sn-emerald-500);
+    }
+
+    .symbol-icon-wrap {
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--sn-text-primary);
+    }
+
+    .symbol-name {
+      font-size: 11px;
+      font-family: var(--font-mono);
+      color: var(--sn-text-secondary);
+      text-align: center;
+      word-break: break-all;
+    }
+
+    /* Color Swatches Grid */
     .color-swatches-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-      gap: 16px;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 12px;
     }
 
     .color-swatch-card {
-      background: var(--sn-bg-card);
-      border: 1px solid var(--sn-border-light);
-      border-radius: var(--sn-radius-md);
+      background: var(--ios-secondary-grouped-bg);
+      border: 0.5px solid var(--ios-separator);
+      border-radius: 10px;
       overflow: hidden;
       cursor: pointer;
-      transition: transform var(--sn-transition-fast);
+      transition: transform 0.15s ease;
     }
 
     .color-swatch-card:hover {
       transform: translateY(-2px);
-      box-shadow: var(--sn-shadow-md);
+      box-shadow: var(--shadow-md);
     }
 
     .color-swatch-preview {
-      height: 72px;
+      height: 56px;
       width: 100%;
     }
 
     .color-swatch-meta {
-      padding: 10px 12px;
+      padding: 8px 10px;
     }
 
     .color-swatch-name {
       font-size: 12px;
-      font-weight: 700;
+      font-weight: 600;
       margin-bottom: 2px;
     }
 
     .color-swatch-hex {
       font-size: 11px;
-      font-family: var(--sn-font-mono);
-      color: var(--sn-text-secondary);
-    }
-
-    /* Code Snippet Box */
-    .code-snippet-box {
-      background: var(--sn-obsidian-900);
-      color: #F8FAFC;
-      font-family: var(--sn-font-mono);
-      font-size: 12px;
-      padding: 16px;
-      border-radius: var(--sn-radius-md);
-      overflow-x: auto;
-      white-space: pre-wrap;
-      margin: 12px 0 0;
-      border: 1px solid var(--sn-border-strong);
+      font-family: var(--font-mono);
+      color: var(--ios-gray-1);
     }
 
     /* Toast Notification for asset.html */
@@ -375,16 +397,18 @@
       position: fixed;
       bottom: 24px;
       right: 24px;
-      background: var(--sn-obsidian-900);
+      background: rgba(15, 23, 42, 0.94);
+      backdrop-filter: var(--ios-blur-material);
+      -webkit-backdrop-filter: var(--ios-blur-material);
       color: #FFFFFF;
-      padding: 12px 20px;
-      border-radius: var(--sn-radius-full);
+      padding: 10px 18px;
+      border-radius: var(--ios-radius-capsule);
       font-size: 13px;
-      font-weight: 700;
-      box-shadow: var(--sn-shadow-lg);
+      font-weight: 600;
+      box-shadow: var(--shadow-lg);
       transform: translateY(100px);
       opacity: 0;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
       z-index: 9999;
       display: flex;
       align-items: center;
@@ -394,15 +418,6 @@
     .doc-toast.show {
       transform: translateY(0);
       opacity: 1;
-    }
-
-    /* Interactive Gauge Slider Control */
-    .gauge-slider-wrap {
-      width: 100%;
-      margin-top: 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
     }
   </style>
 </head>
@@ -414,16 +429,16 @@
     <aside class="doc-sidebar">
       <div>
         <div class="doc-brand">
-          <svg width="28" height="34" viewBox="0 0 110 140" fill="none">
+          <svg width="26" height="32" viewBox="0 0 110 140" fill="none">
             <path d="M14 140V34C14 15.2 29.2 0 48 0H48V140H14Z" fill="var(--sn-emerald-500)"/>
             <path d="M48 48C68 48 76 66 76 88" stroke="var(--sn-emerald-500)" stroke-width="3" fill="none"/>
             <circle cx="76" cy="116" r="22" fill="var(--sn-emerald-500)"/>
-            <circle cx="88" cy="26" r="18" stroke="var(--sn-obsidian-900)" stroke-width="4" fill="var(--sn-bg-card)"/>
-            <text x="88" y="33" font-family="'Inter', sans-serif" font-size="20" font-weight="900" text-anchor="middle" fill="var(--sn-obsidian-900)">$</text>
+            <circle cx="88" cy="26" r="18" stroke="var(--sn-obsidian-900)" stroke-width="4" fill="var(--ios-secondary-grouped-bg)"/>
+            <text x="88" y="33" font-family="-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro', sans-serif" font-size="20" font-weight="900" text-anchor="middle" fill="var(--sn-obsidian-900)">$</text>
           </svg>
           <div>
-            <h1 class="doc-brand-title">Savenow</h1>
-            <span class="doc-brand-badge">Asset &amp; Component Hub</span>
+            <h1 class="doc-brand-title">iOS Assets</h1>
+            <span class="doc-brand-badge">Apple HIG Specification</span>
           </div>
         </div>
       </div>
@@ -434,28 +449,26 @@
           <circle cx="11" cy="11" r="8"></circle>
           <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
         </svg>
-        <input type="text" class="doc-search-input" id="doc-search-input" placeholder="Search components, SVGs, colors...">
+        <input type="text" class="doc-search-input" id="doc-search-input" placeholder="Search iOS assets, SF Symbols...">
       </div>
 
       <!-- Nav Links -->
       <nav>
         <ul class="doc-nav-list">
-          <li class="doc-nav-item"><a href="#tokens"><span>Design Tokens &amp; Colors</span><span class="doc-nav-counter">16</span></a></li>
-          <li class="doc-nav-item"><a href="#typography"><span>Typography &amp; Fonts</span><span class="doc-nav-counter">6</span></a></li>
-          <li class="doc-nav-item"><a href="#brand-assets"><span>Brand Logos &amp; Bank SVGs</span><span class="doc-nav-counter">7</span></a></li>
-          <li class="doc-nav-item"><a href="#buttons"><span>Buttons &amp; Hero Actions</span><span class="doc-nav-counter">8</span></a></li>
-          <li class="doc-nav-item"><a href="#inputs"><span>Form Inputs &amp; Outlines</span><span class="doc-nav-counter">6</span></a></li>
-          <li class="doc-nav-item"><a href="#cards"><span>Cards, Badges &amp; Lists</span><span class="doc-nav-counter">7</span></a></li>
-          <li class="doc-nav-item"><a href="#dataviz"><span>Data Visualizations &amp; Gauge</span><span class="doc-nav-counter">4</span></a></li>
-          <li class="doc-nav-item"><a href="#navigation"><span>Bottom Tab Navigation</span><span class="doc-nav-counter">3</span></a></li>
-          <li class="doc-nav-item"><a href="#modals"><span>Modals, Sheets &amp; Toasts</span><span class="doc-nav-counter">3</span></a></li>
-          <li class="doc-nav-item"><a href="#boilerplates"><span>Screen Boilerplate Code</span><span class="doc-nav-counter">2</span></a></li>
+          <li class="doc-nav-item"><a href="#symbols"><span>SF Symbols Vector Icons</span><span class="doc-nav-counter">24</span></a></li>
+          <li class="doc-nav-item"><a href="#system-colors"><span>UIKit System Colors</span><span class="doc-nav-counter">14</span></a></li>
+          <li class="doc-nav-item"><a href="#typography"><span>iOS Type Hierarchy (SF Pro)</span><span class="doc-nav-counter">8</span></a></li>
+          <li class="doc-nav-item"><a href="#bars"><span>iOS System Bars (Nav, Tab, Status)</span><span class="doc-nav-counter">4</span></a></li>
+          <li class="doc-nav-item"><a href="#controls"><span>iOS Controls (Segment, Switch)</span><span class="doc-nav-counter">5</span></a></li>
+          <li class="doc-nav-item"><a href="#tables"><span>Inset Grouped Table Views</span><span class="doc-nav-counter">4</span></a></li>
+          <li class="doc-nav-item"><a href="#buttons"><span>iOS Button Styles (UIButton)</span><span class="doc-nav-counter">4</span></a></li>
+          <li class="doc-nav-item"><a href="#sheets"><span>iOS Sheets, Alerts &amp; Dynamic Island</span><span class="doc-nav-counter">3</span></a></li>
         </ul>
       </nav>
 
-      <div style="margin-top: auto; padding-top: 16px; border-top: 1px solid var(--sn-border-light); font-size: 11px; color: var(--sn-text-muted);">
-        <p style="margin: 0 0 6px;"><strong>Prototype Repository:</strong></p>
-        <code style="word-break: break-all;">github.com/LakshanSivakumar/g5t1-idp</code>
+      <div style="margin-top: auto; padding-top: 14px; border-top: 0.5px solid var(--ios-separator); font-size: 11px; color: var(--ios-gray-1);">
+        <p style="margin: 0 0 4px;"><strong>Apple HIG Reference:</strong></p>
+        <code>developer.apple.com/design</code>
       </div>
     </aside>
 
@@ -464,126 +477,271 @@
 
       <header class="doc-header-row">
         <div>
-          <h1 class="doc-page-title">Savenow Component &amp; Asset Library</h1>
+          <h1 class="doc-page-title">Apple iOS Assets &amp; HIG Library</h1>
           <p class="doc-page-desc">
-            The single source of truth for the Savenow design system. Reference, test, and copy ready-to-use HTML and CSS building blocks for your prototype screens.
+            Standard Apple iOS Human Interface Guidelines (HIG) specification assets. Click any SF Symbol, UI component, or UIKit color token to copy its ready-to-use HTML and SVG code.
           </p>
         </div>
         <button class="doc-theme-btn" id="doc-theme-toggle">
           <span id="theme-btn-icon">&#9790;</span>
-          <span id="theme-btn-label">Dark Mode</span>
+          <span id="theme-btn-label">Dark Appearance</span>
         </button>
       </header>
 
 
       <!-- ==============================================================
-           1. DESIGN TOKENS & COLOR PALETTE
+           1. SF SYMBOLS VECTOR ICON LIBRARY (PURE SVG)
            ============================================================== -->
-      <section class="doc-section" id="tokens">
+      <section class="doc-section" id="symbols">
         <div class="doc-section-header">
-          <h2 class="doc-section-title">&#9679; Design Tokens &amp; Color Palette</h2>
-          <p class="doc-section-desc">Click any swatch to copy its CSS variable or HEX code directly to your clipboard.</p>
+          <h2 class="doc-section-title">&#9679; Apple SF Symbols (Vector SVGs)</h2>
+          <p class="doc-section-desc">Click any symbol to copy its pure vector SVG directly to your clipboard.</p>
         </div>
 
-        <h3 style="font-size: 15px; margin: 20px 0 12px; font-weight: 800; color: var(--sn-text-secondary);">BRAND &amp; ACCENTS</h3>
-        <div class="color-swatches-grid">
-          <div class="color-swatch-card" onclick="copySnippet('var(--sn-obsidian-900)', 'Obsidian Slate')">
-            <div class="color-swatch-preview" style="background: #0F172A;"></div>
-            <div class="color-swatch-meta">
-              <div class="color-swatch-name">Obsidian Slate</div>
-              <div class="color-swatch-hex">#0F172A · 900</div>
+        <div class="symbols-grid">
+          <!-- house.fill -->
+          <div class="symbol-card" onclick="copySnippet(this.querySelector('.symbol-icon-wrap').innerHTML, 'house.fill SVG')">
+            <div class="symbol-icon-wrap">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.1L1 12h3v9a1 1 0 0 0 1 1h5v-6h4v6h5a1 1 0 0 0 1-1v-9h3L12 2.1z"/></svg>
             </div>
+            <span class="symbol-name">house.fill</span>
           </div>
-          <div class="color-swatch-card" onclick="copySnippet('var(--sn-emerald-500)', 'Emerald Accent')">
-            <div class="color-swatch-preview" style="background: #10B981;"></div>
-            <div class="color-swatch-meta">
-              <div class="color-swatch-name">Emerald 500</div>
-              <div class="color-swatch-hex">#10B981 · Primary Accent</div>
+
+          <!-- chart.pie.fill -->
+          <div class="symbol-card" onclick="copySnippet(this.querySelector('.symbol-icon-wrap').innerHTML, 'chart.pie.fill SVG')">
+            <div class="symbol-icon-wrap">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M11 2v10h10A10 10 0 0 0 11 2zm2 10.5V22a10 10 0 0 0 8.5-8.5H13zM9.5 4A10 10 0 1 0 20 14.5H9.5V4z"/></svg>
             </div>
+            <span class="symbol-name">chart.pie.fill</span>
           </div>
-          <div class="color-swatch-card" onclick="copySnippet('var(--sn-emerald-600)', 'Emerald Deep')">
-            <div class="color-swatch-preview" style="background: #059669;"></div>
-            <div class="color-swatch-meta">
-              <div class="color-swatch-name">Emerald 600</div>
-              <div class="color-swatch-hex">#059669 · Button Hover</div>
+
+          <!-- plus.circle.fill -->
+          <div class="symbol-card" onclick="copySnippet(this.querySelector('.symbol-icon-wrap').innerHTML, 'plus.circle.fill SVG')">
+            <div class="symbol-icon-wrap">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
             </div>
+            <span class="symbol-name">plus.circle.fill</span>
           </div>
-          <div class="color-swatch-card" onclick="copySnippet('var(--sn-emerald-100)', 'Emerald Tint')">
-            <div class="color-swatch-preview" style="background: #D1FAE5;"></div>
-            <div class="color-swatch-meta">
-              <div class="color-swatch-name">Emerald 100</div>
-              <div class="color-swatch-hex">#D1FAE5 · Badge Bg</div>
+
+          <!-- person.2.fill -->
+          <div class="symbol-card" onclick="copySnippet(this.querySelector('.symbol-icon-wrap').innerHTML, 'person.2.fill SVG')">
+            <div class="symbol-icon-wrap">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm6.5 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM9 13c-2.67 0-8 1.34-8 4v2a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-2c0-2.66-5.33-4-8-4zm6.5 1c-.34 0-.74.03-1.16.08 1.02.77 1.66 1.83 1.66 2.92v2h4a1 1 0 0 0 1-1v-1c0-1.66-3.33-3-5.5-3z"/></svg>
             </div>
+            <span class="symbol-name">person.2.fill</span>
+          </div>
+
+          <!-- gearshape.fill -->
+          <div class="symbol-card" onclick="copySnippet(this.querySelector('.symbol-icon-wrap').innerHTML, 'gearshape.fill SVG')">
+            <div class="symbol-icon-wrap">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.49.49 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54A.48.48 0 0 0 14 2h-4a.48.48 0 0 0-.48.41l-.38 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96a.49.49 0 0 0-.59.22L2.62 8.47a.49.49 0 0 0 .12.61l2.03 1.58c-.05.3-.07.63-.07.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h4c.24 0 .44-.17.48-.41l.38-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+            </div>
+            <span class="symbol-name">gearshape.fill</span>
+          </div>
+
+          <!-- chevron.left -->
+          <div class="symbol-card" onclick="copySnippet(this.querySelector('.symbol-icon-wrap').innerHTML, 'chevron.left SVG')">
+            <div class="symbol-icon-wrap">
+              <svg width="14" height="22" viewBox="0 0 12 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2L2 10L10 18"/></svg>
+            </div>
+            <span class="symbol-name">chevron.left</span>
+          </div>
+
+          <!-- chevron.right -->
+          <div class="symbol-card" onclick="copySnippet(this.querySelector('.symbol-icon-wrap').innerHTML, 'chevron.right SVG')">
+            <div class="symbol-icon-wrap">
+              <svg width="10" height="16" viewBox="0 0 8 13" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 1.5L6.5 6.5L1.5 11.5"/></svg>
+            </div>
+            <span class="symbol-name">chevron.right</span>
+          </div>
+
+          <!-- flame.fill -->
+          <div class="symbol-card" onclick="copySnippet(this.querySelector('.symbol-icon-wrap').innerHTML, 'flame.fill SVG')">
+            <div class="symbol-icon-wrap" style="color: var(--ios-system-orange);">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 23c6.075 0 10-4.043 10-9.61 0-4.66-3.08-8.23-6.62-10.42a1 1 0 0 0-1.48.97c.21 2.45-.63 4.2-2.12 5.37C10.74 8.13 9.4 6.7 8.7 5.03a1 1 0 0 0-1.8.18C5.23 9.24 2 13.06 2 16.39 2 20.95 5.925 23 12 23z"/></svg>
+            </div>
+            <span class="symbol-name">flame.fill</span>
+          </div>
+
+          <!-- hands.clap.fill -->
+          <div class="symbol-card" onclick="copySnippet(this.querySelector('.symbol-icon-wrap').innerHTML, 'hands.clap.fill SVG')">
+            <div class="symbol-icon-wrap">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12.5 3c-.83 0-1.5.67-1.5 1.5v7h-1V2c0-.83-.67-1.5-1.5-1.5S7 1.17 7 2v10H6V4.5C6 3.67 5.33 3 4.5 3S3 3.67 3 4.5v11.41C3 19.98 6.47 23.5 10.75 23.5S18.5 19.98 18.5 15.91V8.5c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5V11.5h-1V4.5c0-.83-.67-1.5-1.5-1.5z"/></svg>
+            </div>
+            <span class="symbol-name">hands.clap.fill</span>
+          </div>
+
+          <!-- checkmark.circle.fill -->
+          <div class="symbol-card" onclick="copySnippet(this.querySelector('.symbol-icon-wrap').innerHTML, 'checkmark.circle.fill SVG')">
+            <div class="symbol-icon-wrap" style="color: var(--ios-system-green);">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            </div>
+            <span class="symbol-name">checkmark.circle.fill</span>
+          </div>
+
+          <!-- bell.badge.fill -->
+          <div class="symbol-card" onclick="copySnippet(this.querySelector('.symbol-icon-wrap').innerHTML, 'bell.badge.fill SVG')">
+            <div class="symbol-icon-wrap" style="color: var(--ios-system-red);">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 22a2.98 2.98 0 0 0 2.82-2H9.18A2.98 2.98 0 0 0 12 22zm7-6v-5c0-3.07-1.64-5.64-4.5-6.32V4a2.5 2.5 0 0 0-5 0v.68C6.63 5.36 5 7.92 5 11v5l-2 2v1h18v-1l-2-2zM18 6a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/></svg>
+            </div>
+            <span class="symbol-name">bell.badge.fill</span>
+          </div>
+
+          <!-- building.columns.fill -->
+          <div class="symbol-card" onclick="copySnippet(this.querySelector('.symbol-icon-wrap').innerHTML, 'building.columns.fill SVG')">
+            <div class="symbol-icon-wrap">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L2 6v2h20V6L12 1zM4 10v9h3v-9H4zm6 0v9h4v-9h-4zm7 0v9h3v-9h-3zM2 21v2h20v-2H2z"/></svg>
+            </div>
+            <span class="symbol-name">building.columns</span>
+          </div>
+
+          <!-- creditcard.fill -->
+          <div class="symbol-card" onclick="copySnippet(this.querySelector('.symbol-icon-wrap').innerHTML, 'creditcard.fill SVG')">
+            <div class="symbol-icon-wrap">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.11 0-2 .89-2 2v12c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
+            </div>
+            <span class="symbol-name">creditcard.fill</span>
+          </div>
+
+          <!-- arrow.triangle.2.circlepath -->
+          <div class="symbol-card" onclick="copySnippet(this.querySelector('.symbol-icon-wrap').innerHTML, 'arrow.triangle.2.circlepath SVG')">
+            <div class="symbol-icon-wrap">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+            </div>
+            <span class="symbol-name">arrow.triangle</span>
+          </div>
+
+          <!-- cup.and.saucer.fill -->
+          <div class="symbol-card" onclick="copySnippet(this.querySelector('.symbol-icon-wrap').innerHTML, 'cup.and.saucer.fill SVG')">
+            <div class="symbol-icon-wrap" style="color: var(--ios-system-orange);">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M4 19h16v2H4zM20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 5h-2V5h2v3z"/></svg>
+            </div>
+            <span class="symbol-name">cup.and.saucer</span>
+          </div>
+
+          <!-- tram.fill -->
+          <div class="symbol-card" onclick="copySnippet(this.querySelector('.symbol-icon-wrap').innerHTML, 'tram.fill SVG')">
+            <div class="symbol-icon-wrap" style="color: var(--ios-system-blue);">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c-4.42 0-8 .5-8 4v10c0 .88.39 1.67 1 2.22V20a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-1h8v1a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-1.78c.61-.55 1-1.34 1-2.22V6c0-3.5-3.58-4-8-4zm-3.5 14a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm7 0a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zM18 10H6V7h12v3z"/></svg>
+            </div>
+            <span class="symbol-name">tram.fill</span>
+          </div>
+
+          <!-- bag.fill -->
+          <div class="symbol-card" onclick="copySnippet(this.querySelector('.symbol-icon-wrap').innerHTML, 'bag.fill SVG')">
+            <div class="symbol-icon-wrap" style="color: var(--ios-system-purple);">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M18 6h-2c0-2.21-1.79-4-4-4S8 3.79 8 6H6c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-6-2c1.1 0 2 .9 2 2h-4c0-1.1.9-2 2-2z"/></svg>
+            </div>
+            <span class="symbol-name">bag.fill</span>
+          </div>
+
+          <!-- bolt.fill -->
+          <div class="symbol-card" onclick="copySnippet(this.querySelector('.symbol-icon-wrap').innerHTML, 'bolt.fill SVG')">
+            <div class="symbol-icon-wrap" style="color: var(--ios-system-yellow);">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M11 21h-1l1-7H7.5c-.58 0-.57-.32-.38-.66.19-.34.05-.08.08-.14L13 3h1l-1 7h3.5c.49 0 .56.33.47.51l-.07.15L11 21z"/></svg>
+            </div>
+            <span class="symbol-name">bolt.fill</span>
+          </div>
+
+          <!-- music.note -->
+          <div class="symbol-card" onclick="copySnippet(this.querySelector('.symbol-icon-wrap').innerHTML, 'music.note SVG')">
+            <div class="symbol-icon-wrap" style="color: var(--ios-system-pink);">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+            </div>
+            <span class="symbol-name">music.note</span>
+          </div>
+
+          <!-- lock.fill -->
+          <div class="symbol-card" onclick="copySnippet(this.querySelector('.symbol-icon-wrap').innerHTML, 'lock.fill SVG')">
+            <div class="symbol-icon-wrap">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+            </div>
+            <span class="symbol-name">lock.fill</span>
+          </div>
+
+          <!-- trash.fill -->
+          <div class="symbol-card" onclick="copySnippet(this.querySelector('.symbol-icon-wrap').innerHTML, 'trash.fill SVG')">
+            <div class="symbol-icon-wrap" style="color: var(--ios-system-red);">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
+            </div>
+            <span class="symbol-name">trash.fill</span>
+          </div>
+
+          <!-- magnifyingglass -->
+          <div class="symbol-card" onclick="copySnippet(this.querySelector('.symbol-icon-wrap').innerHTML, 'magnifyingglass SVG')">
+            <div class="symbol-icon-wrap">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </div>
+            <span class="symbol-name">magnifyingglass</span>
           </div>
         </div>
+      </section>
 
-        <h3 style="font-size: 15px; margin: 24px 0 12px; font-weight: 800; color: var(--sn-text-secondary);">SEMANTIC STATUS &amp; RECOVERY</h3>
-        <div class="color-swatches-grid">
-          <div class="color-swatch-card" onclick="copySnippet('var(--sn-amber-500)', 'Amber Warning')">
-            <div class="color-swatch-preview" style="background: #F59E0B;"></div>
-            <div class="color-swatch-meta">
-              <div class="color-swatch-name">Amber 500</div>
-              <div class="color-swatch-hex">#F59E0B · Near Limit</div>
-            </div>
-          </div>
-          <div class="color-swatch-card" onclick="copySnippet('var(--sn-rose-500)', 'Rose Danger')">
-            <div class="color-swatch-preview" style="background: #F43F5E;"></div>
-            <div class="color-swatch-meta">
-              <div class="color-swatch-name">Rose 500</div>
-              <div class="color-swatch-hex">#F43F5E · Over Limit</div>
-            </div>
-          </div>
-          <div class="color-swatch-card" onclick="copySnippet('var(--sn-indigo-500)', 'Indigo Catch-up')">
-            <div class="color-swatch-preview" style="background: #6366F1;"></div>
-            <div class="color-swatch-meta">
-              <div class="color-swatch-name">Indigo 500</div>
-              <div class="color-swatch-hex">#6366F1 · Recovery</div>
-            </div>
-          </div>
-          <div class="color-swatch-card" onclick="copySnippet('var(--sn-streak-orange)', 'Streak Orange')">
-            <div class="color-swatch-preview" style="background: #EA580C;"></div>
-            <div class="color-swatch-meta">
-              <div class="color-swatch-name">Streak Orange</div>
-              <div class="color-swatch-hex">#EA580C · 98-Day Streak</div>
-            </div>
-          </div>
+
+      <!-- ==============================================================
+           2. UIKIT SYSTEM COLORS
+           ============================================================== -->
+      <section class="doc-section" id="system-colors">
+        <div class="doc-section-header">
+          <h2 class="doc-section-title">&#9679; UIKit Standard System Colors</h2>
+          <p class="doc-section-desc">Official Apple system tint and grouped background tokens. Click any card to copy the variable.</p>
         </div>
 
-        <h3 style="font-size: 15px; margin: 24px 0 12px; font-weight: 800; color: var(--sn-text-secondary);">5-CATEGORY CHART DONUT TOKENS</h3>
         <div class="color-swatches-grid">
-          <div class="color-swatch-card" onclick="copySnippet('var(--sn-cat-food)', 'Food Cat')">
-            <div class="color-swatch-preview" style="background: #F59E0B;"></div>
+          <div class="color-swatch-card" onclick="copySnippet('var(--ios-system-blue)', 'System Blue')">
+            <div class="color-swatch-preview" style="background: var(--ios-system-blue);"></div>
             <div class="color-swatch-meta">
-              <div class="color-swatch-name">Food &amp; Dining</div>
-              <div class="color-swatch-hex">#F59E0B · 34%</div>
+              <div class="color-swatch-name">System Blue</div>
+              <div class="color-swatch-hex">#007AFF · Action Tint</div>
             </div>
           </div>
-          <div class="color-swatch-card" onclick="copySnippet('var(--sn-cat-transport)', 'Transport Cat')">
-            <div class="color-swatch-preview" style="background: #0284C7;"></div>
+          <div class="color-swatch-card" onclick="copySnippet('var(--ios-system-green)', 'System Green')">
+            <div class="color-swatch-preview" style="background: var(--ios-system-green);"></div>
             <div class="color-swatch-meta">
-              <div class="color-swatch-name">Transport</div>
-              <div class="color-swatch-hex">#0284C7 · 22%</div>
+              <div class="color-swatch-name">System Green</div>
+              <div class="color-swatch-hex">#34C759 · Success</div>
             </div>
           </div>
-          <div class="color-swatch-card" onclick="copySnippet('var(--sn-cat-shopping)', 'Shopping Cat')">
-            <div class="color-swatch-preview" style="background: #8B5CF6;"></div>
+          <div class="color-swatch-card" onclick="copySnippet('var(--sn-emerald-500)', 'Emerald Primary')">
+            <div class="color-swatch-preview" style="background: var(--sn-emerald-500);"></div>
             <div class="color-swatch-meta">
-              <div class="color-swatch-name">Shopping</div>
-              <div class="color-swatch-hex">#8B5CF6 · 20%</div>
+              <div class="color-swatch-name">Savenow Emerald</div>
+              <div class="color-swatch-hex">#10B981 · App Tint</div>
             </div>
           </div>
-          <div class="color-swatch-card" onclick="copySnippet('var(--sn-cat-bills)', 'Bills Cat')">
-            <div class="color-swatch-preview" style="background: #10B981;"></div>
+          <div class="color-swatch-card" onclick="copySnippet('var(--ios-system-orange)', 'System Orange')">
+            <div class="color-swatch-preview" style="background: var(--ios-system-orange);"></div>
             <div class="color-swatch-meta">
-              <div class="color-swatch-name">Bills &amp; Subs</div>
-              <div class="color-swatch-hex">#10B981 · 14%</div>
+              <div class="color-swatch-name">System Orange</div>
+              <div class="color-swatch-hex">#FF9500 · Streak / Warning</div>
             </div>
           </div>
-          <div class="color-swatch-card" onclick="copySnippet('var(--sn-cat-other)', 'Other Cat')">
-            <div class="color-swatch-preview" style="background: #94A3B8;"></div>
+          <div class="color-swatch-card" onclick="copySnippet('var(--ios-system-red)', 'System Red')">
+            <div class="color-swatch-preview" style="background: var(--ios-system-red);"></div>
             <div class="color-swatch-meta">
-              <div class="color-swatch-name">Other / Misc</div>
-              <div class="color-swatch-hex">#94A3B8 · 10%</div>
+              <div class="color-swatch-name">System Red</div>
+              <div class="color-swatch-hex">#FF3B30 · Destructive</div>
+            </div>
+          </div>
+          <div class="color-swatch-card" onclick="copySnippet('var(--ios-system-indigo)', 'System Indigo')">
+            <div class="color-swatch-preview" style="background: var(--ios-system-indigo);"></div>
+            <div class="color-swatch-meta">
+              <div class="color-swatch-name">System Indigo</div>
+              <div class="color-swatch-hex">#5856D6 · Recovery</div>
+            </div>
+          </div>
+          <div class="color-swatch-card" onclick="copySnippet('var(--ios-system-purple)', 'System Purple')">
+            <div class="color-swatch-preview" style="background: var(--ios-system-purple);"></div>
+            <div class="color-swatch-meta">
+              <div class="color-swatch-name">System Purple</div>
+              <div class="color-swatch-hex">#AF52DE · Shopping</div>
+            </div>
+          </div>
+          <div class="color-swatch-card" onclick="copySnippet('var(--ios-gray-1)', 'System Gray')">
+            <div class="color-swatch-preview" style="background: var(--ios-gray-1);"></div>
+            <div class="color-swatch-meta">
+              <div class="color-swatch-name">System Gray</div>
+              <div class="color-swatch-hex">#8E8E93 · Labels / Icons</div>
             </div>
           </div>
         </div>
@@ -591,55 +749,207 @@
 
 
       <!-- ==============================================================
-           2. TYPOGRAPHY
+           3. IOS TYPOGRAPHY SCALE (SF PRO)
            ============================================================== -->
       <section class="doc-section" id="typography">
         <div class="doc-section-header">
-          <h2 class="doc-section-title">&#9679; Typography &amp; Font Hierarchy</h2>
-          <p class="doc-section-desc">Inter for headings, captions and body; JetBrains Mono for financial quantities and timestamps.</p>
+          <h2 class="doc-section-title">&#9679; iOS Typography Scale (SF Pro)</h2>
+          <p class="doc-section-desc">Apple iOS Dynamic Type scale with standard line heights and letter spacing.</p>
+        </div>
+
+        <div class="doc-card">
+          <div style="padding: 16px 20px;">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 0.5px solid var(--ios-separator); padding-bottom: 12px; margin-bottom: 12px;">
+              <div>
+                <span class="ios-large-title" style="padding: 0;">Large Title</span>
+                <div style="font-size: 13px; color: var(--ios-gray-1);">34pt · Bold · -0.4px tracking</div>
+              </div>
+              <button class="btn-copy-code" onclick="copySnippet('font-size: 34px; font-weight: 800; letter-spacing: -0.4px;', 'Large Title Style')">Copy CSS</button>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 0.5px solid var(--ios-separator); padding-bottom: 12px; margin-bottom: 12px;">
+              <div>
+                <span style="font-size: 28px; font-weight: 700; letter-spacing: -0.3px;">Title 1</span>
+                <div style="font-size: 13px; color: var(--ios-gray-1);">28pt · Bold · -0.3px tracking</div>
+              </div>
+              <button class="btn-copy-code" onclick="copySnippet('font-size: 28px; font-weight: 700; letter-spacing: -0.3px;', 'Title 1 Style')">Copy CSS</button>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 0.5px solid var(--ios-separator); padding-bottom: 12px; margin-bottom: 12px;">
+              <div>
+                <span style="font-size: 17px; font-weight: 600; letter-spacing: -0.4px;">Headline</span>
+                <div style="font-size: 13px; color: var(--ios-gray-1);">17pt · Semibold · -0.4px tracking</div>
+              </div>
+              <button class="btn-copy-code" onclick="copySnippet('font-size: 17px; font-weight: 600; letter-spacing: -0.4px;', 'Headline Style')">Copy CSS</button>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: baseline;">
+              <div>
+                <span style="font-size: 17px; font-weight: 400; letter-spacing: -0.4px;">Body Text</span>
+                <div style="font-size: 13px; color: var(--ios-gray-1);">17pt · Regular · -0.4px tracking</div>
+              </div>
+              <button class="btn-copy-code" onclick="copySnippet('font-size: 17px; font-weight: 400; letter-spacing: -0.4px;', 'Body Style')">Copy CSS</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ==============================================================
+           4. IOS SYSTEM BARS
+           ============================================================== -->
+      <section class="doc-section" id="bars">
+        <div class="doc-section-header">
+          <h2 class="doc-section-title">&#9679; iOS System Bars (Status, Nav &amp; Tab Bar)</h2>
+          <p class="doc-section-desc">Native Apple navigation patterns with translucent blur, Dynamic Island, and Home Indicator.</p>
         </div>
 
         <div class="doc-grid">
+          <!-- iOS Large Title Navigation Bar -->
           <div class="doc-card">
             <div class="doc-card-header">
-              <span class="doc-card-title">Setup Eyebrow</span>
-              <span class="doc-card-tag">.setup-eyebrow</span>
+              <span class="doc-card-title">iOS Large Title Navigation Bar</span>
+              <span class="doc-card-tag">.ios-large-title</span>
             </div>
-            <div class="doc-preview-area">
-              <div class="setup-eyebrow">SETUP · STEP 1 OF 4</div>
+            <div class="doc-preview-area phone-frame">
+              <header class="ios-nav-bar" style="width: 100%;">
+                <span class="ios-nav-title" style="position: static; transform: none; font-size: 13px; color: var(--ios-gray-1);">Savenow</span>
+                <span style="font-size: 13px; color: var(--sn-emerald-600); font-weight: 600;">Edit</span>
+              </header>
+              <h1 class="ios-large-title" style="padding: 4px 0 8px; width: 100%;">Settings</h1>
             </div>
             <div class="doc-code-footer">
-              <button class="btn-copy-code" onclick="copyComponentCode(this)"><span>&#128203;</span> Copy HTML</button>
+              <button class="btn-copy-code" onclick="copyComponentCode(this)">Copy HTML</button>
             </div>
           </div>
 
+          <!-- iOS Navigation Bar with Back Button -->
           <div class="doc-card">
             <div class="doc-card-header">
-              <span class="doc-card-title">Setup Title &amp; Subtitle</span>
-              <span class="doc-card-tag">.setup-title</span>
+              <span class="doc-card-title">iOS Navigation Bar (‹ Back &amp; Title)</span>
+              <span class="doc-card-tag">.ios-nav-bar</span>
             </div>
-            <div class="doc-preview-area">
-              <div style="text-align: center;">
-                <h2 class="setup-title" style="margin: 0 0 4px;">Connect your bank account</h2>
-                <p class="setup-subtitle" style="margin: 0;">Link your accounts to auto-categorize daily spending.</p>
+            <div class="doc-preview-area phone-frame">
+              <header class="ios-nav-bar" style="width: 100%;">
+                <button class="ios-nav-back">
+                  <svg width="12" height="20" viewBox="0 0 12 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M10 2L2 10L10 18"/>
+                  </svg>
+                  <span>Back</span>
+                </button>
+                <span class="ios-nav-title">Connect Bank</span>
+                <span style="font-size: 17px; color: var(--sn-emerald-600); font-weight: 600;">Done</span>
+              </header>
+            </div>
+            <div class="doc-code-footer">
+              <button class="btn-copy-code" onclick="copyComponentCode(this)">Copy HTML</button>
+            </div>
+          </div>
+
+          <!-- iOS Tab Bar -->
+          <div class="doc-card" style="grid-column: 1 / -1;">
+            <div class="doc-card-header">
+              <span class="doc-card-title">iOS Tab Bar (UITabBar with SF Symbols &amp; Home Indicator)</span>
+              <span class="doc-card-tag">.bottom-nav-bar</span>
+            </div>
+            <div class="doc-preview-area phone-frame">
+              <nav class="bottom-nav-bar" style="display: flex; position: relative; width: 100%; border-radius: 14px;">
+                <button class="nav-tab-btn active">
+                  <svg class="nav-tab-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2.1L1 12h3v9a1 1 0 0 0 1 1h5v-6h4v6h5a1 1 0 0 0 1-1v-9h3L12 2.1z"/>
+                  </svg>
+                  <span>Home</span>
+                </button>
+                <button class="nav-tab-btn">
+                  <svg class="nav-tab-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M11 2v10h10A10 10 0 0 0 11 2zm2 10.5V22a10 10 0 0 0 8.5-8.5H13zM9.5 4A10 10 0 1 0 20 14.5H9.5V4z"/>
+                  </svg>
+                  <span>Insights</span>
+                </button>
+                <button class="nav-tab-btn nav-center-add">
+                  <div class="nav-add-circle">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+                      <line x1="12" y1="5" x2="12" y2="19"/>
+                      <line x1="5" y1="12" x2="19" y2="12"/>
+                    </svg>
+                  </div>
+                  <span style="margin-top: 2px;">Add</span>
+                </button>
+                <button class="nav-tab-btn">
+                  <svg class="nav-tab-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm6.5 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM9 13c-2.67 0-8 1.34-8 4v2a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-2c0-2.66-5.33-4-8-4z"/>
+                  </svg>
+                  <span>Social</span>
+                </button>
+                <button class="nav-tab-btn">
+                  <svg class="nav-tab-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 0 0 .12-.61l-1.92-3.32a.49.49 0 0 0-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54A.48.48 0 0 0 14 2h-4a.48.48 0 0 0-.48.41l-.38 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96a.49.49 0 0 0-.59.22L2.62 8.47a.49.49 0 0 0 .12.61l2.03 1.58c-.05.3-.07.63-.07.94s.02.64.07.94l-2.03 1.58a.49.49 0 0 0-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h4c.24 0 .44-.17.48-.41l.38-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/>
+                  </svg>
+                  <span>Settings</span>
+                </button>
+                <div class="ios-home-indicator-wrap"><div class="ios-home-indicator"></div></div>
+              </nav>
+            </div>
+            <div class="doc-code-footer">
+              <button class="btn-copy-code" onclick="copyComponentCode(this)">Copy HTML</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ==============================================================
+           5. IOS SYSTEM CONTROLS
+           ============================================================== -->
+      <section class="doc-section" id="controls">
+        <div class="doc-section-header">
+          <h2 class="doc-section-title">&#9679; iOS System Controls (Segmented Control &amp; Switch)</h2>
+          <p class="doc-section-desc">Interactive native Apple controls ported to pure CSS and HTML.</p>
+        </div>
+
+        <div class="doc-grid">
+          <!-- Segmented Control -->
+          <div class="doc-card">
+            <div class="doc-card-header">
+              <span class="doc-card-title">iOS Segmented Control</span>
+              <span class="doc-card-tag">UISegmentedControl</span>
+            </div>
+            <div class="doc-preview-area" style="width: 100%;">
+              <div class="ios-segmented-control" style="width: 280px;">
+                <button class="ios-segment-btn active" onclick="activateSegment(this)">Daily</button>
+                <button class="ios-segment-btn" onclick="activateSegment(this)">Weekly</button>
+                <button class="ios-segment-btn" onclick="activateSegment(this)">Monthly</button>
               </div>
             </div>
             <div class="doc-code-footer">
-              <button class="btn-copy-code" onclick="copyComponentCode(this)"><span>&#128203;</span> Copy HTML</button>
+              <button class="btn-copy-code" onclick="copyComponentCode(this)">Copy HTML</button>
             </div>
           </div>
 
+          <!-- iOS Switch -->
           <div class="doc-card">
             <div class="doc-card-header">
-              <span class="doc-card-title">Monospace Currency Figure</span>
-              <span class="doc-card-tag">JetBrains Mono</span>
+              <span class="doc-card-title">iOS Switch Toggle</span>
+              <span class="doc-card-tag">UISwitch</span>
             </div>
-            <div class="doc-preview-area">
-              <div style="font-family: var(--sn-font-mono); font-size: 38px; font-weight: 700; color: var(--sn-obsidian-900);">$17.40</div>
-              <div style="font-size: 13px; color: var(--sn-text-secondary); margin-top: 4px;">$2.60 under your $20 limit</div>
+            <div class="doc-preview-area" style="gap: 16px;">
+              <div style="display: flex; align-items: center; justify-content: space-between; width: 220px;">
+                <span style="font-size: 16px; font-weight: 500;">Notifications</span>
+                <label class="ios-switch">
+                  <input type="checkbox" checked onchange="showDocToast('Toggle: ' + (this.checked ? 'ON' : 'OFF'))">
+                  <span class="ios-switch-slider"></span>
+                </label>
+              </div>
+              <div style="display: flex; align-items: center; justify-content: space-between; width: 220px;">
+                <span style="font-size: 16px; font-weight: 500;">Face ID Sync</span>
+                <label class="ios-switch">
+                  <input type="checkbox" onchange="showDocToast('Toggle: ' + (this.checked ? 'ON' : 'OFF'))">
+                  <span class="ios-switch-slider"></span>
+                </label>
+              </div>
             </div>
             <div class="doc-code-footer">
-              <button class="btn-copy-code" onclick="copyComponentCode(this)"><span>&#128203;</span> Copy HTML</button>
+              <button class="btn-copy-code" onclick="copyComponentCode(this)">Copy HTML</button>
             </div>
           </div>
         </div>
@@ -647,236 +957,111 @@
 
 
       <!-- ==============================================================
-           3. BRAND LOGOS & BANK SVGS
+           6. INSET GROUPED TABLE VIEWS
            ============================================================== -->
-      <section class="doc-section" id="brand-assets">
+      <section class="doc-section" id="tables">
         <div class="doc-section-header">
-          <h2 class="doc-section-title">&#9679; Brand Logos &amp; Bank SVGs</h2>
-          <p class="doc-section-desc">Vector assets for Savenow brand monogram and Singapore bank integrations.</p>
+          <h2 class="doc-section-title">&#9679; Inset Grouped Table Views</h2>
+          <p class="doc-section-desc">The signature iOS 17 list pattern with colored squircle icons and disclosure indicators.</p>
         </div>
 
-        <div class="doc-grid">
-          <!-- Monogram -->
-          <div class="doc-card">
-            <div class="doc-card-header">
-              <span class="doc-card-title">Save Now Geometric Monogram</span>
-              <span class="doc-card-tag">SVG 110x140</span>
-            </div>
-            <div class="doc-preview-area">
-              <svg width="70" height="90" viewBox="0 0 110 140" fill="none">
-                <path d="M14 140V34C14 15.2 29.2 0 48 0H48V140H14Z" fill="currentColor"/>
-                <path d="M48 48C68 48 76 66 76 88" stroke="currentColor" stroke-width="2.5" fill="none"/>
-                <circle cx="76" cy="116" r="22" fill="currentColor"/>
-                <g transform="translate(68, 6)">
-                  <circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="3.5" fill="var(--sn-bg-card)"/>
-                  <text x="20" y="26" font-family="'Inter', sans-serif" font-size="20" font-weight="900" text-anchor="middle" fill="currentColor">$</text>
-                </g>
-              </svg>
-            </div>
-            <div class="doc-code-footer">
-              <button class="btn-copy-code" onclick="copyComponentCode(this)"><span>&#128203;</span> Copy SVG</button>
+        <div class="doc-card" style="max-width: 520px;">
+          <div class="doc-card-header">
+            <span class="doc-card-title">UITableViewStyleInsetGrouped</span>
+            <span class="doc-card-tag">.ios-inset-group</span>
+          </div>
+          <div class="doc-preview-area phone-frame">
+            <div class="ios-section-header" style="padding-left: 0;">ACCOUNTS &amp; PREFERENCES</div>
+            <div class="ios-inset-group" style="width: 100%;">
+              <div class="ios-list-row">
+                <div class="ios-row-left">
+                  <div class="ios-icon-box blue">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M2 10h20v11a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V10zm0-5l10-4 10 4v3H2V5z"/></svg>
+                  </div>
+                  <div>
+                    <div class="ios-row-title">Connected Banks</div>
+                    <div class="ios-row-sub">DBS connected</div>
+                  </div>
+                </div>
+                <div class="ios-row-right">
+                  <svg class="ios-disclosure" viewBox="0 0 8 13" fill="none" stroke="currentColor"><path d="M1.5 1.5L6.5 6.5L1.5 11.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+              </div>
+
+              <div class="ios-list-row">
+                <div class="ios-row-left">
+                  <div class="ios-icon-box orange">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="2"/></svg>
+                  </div>
+                  <div>
+                    <div class="ios-row-title">Goal &amp; Budget</div>
+                    <div class="ios-row-sub">$2,000 MacBook Pro</div>
+                  </div>
+                </div>
+                <div class="ios-row-right">
+                  <svg class="ios-disclosure" viewBox="0 0 8 13" fill="none" stroke="currentColor"><path d="M1.5 1.5L6.5 6.5L1.5 11.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </div>
+              </div>
+
+              <div class="ios-list-row">
+                <div class="ios-row-left">
+                  <div class="ios-icon-box red">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 22a2.98 2.98 0 0 0 2.82-2H9.18A2.98 2.98 0 0 0 12 22zm7-6v-5c0-3.07-1.64-5.64-4.5-6.32V4a2.5 2.5 0 0 0-5 0v.68C6.63 5.36 5 7.92 5 11v5l-2 2v1h18v-1l-2-2z"/></svg>
+                  </div>
+                  <div class="ios-row-title">Push Alerts</div>
+                </div>
+                <div class="ios-row-right">
+                  <label class="ios-switch">
+                    <input type="checkbox" checked>
+                    <span class="ios-switch-slider"></span>
+                  </label>
+                </div>
+              </div>
             </div>
           </div>
-
-          <!-- DBS Bank -->
-          <div class="doc-card">
-            <div class="doc-card-header">
-              <span class="doc-card-title">DBS Bank Logo</span>
-              <span class="doc-card-tag">SVG Vector</span>
-            </div>
-            <div class="doc-preview-area">
-              <svg viewBox="0 0 110 32" width="110" height="32" fill="currentColor">
-                <path d="M6 16L15 7L24 16L15 25L6 16Z" fill="#E11D48"/>
-                <path d="M15 16L24 7L33 16L24 25L15 16Z" fill="#0F172A"/>
-                <text x="42" y="23" font-family="'Inter', sans-serif" font-weight="900" font-size="20" letter-spacing="-0.03em" fill="currentColor">DBS</text>
-              </svg>
-            </div>
-            <div class="doc-code-footer">
-              <button class="btn-copy-code" onclick="copyComponentCode(this)"><span>&#128203;</span> Copy SVG</button>
-            </div>
-          </div>
-
-          <!-- OCBC Bank -->
-          <div class="doc-card">
-            <div class="doc-card-header">
-              <span class="doc-card-title">OCBC Bank Logo</span>
-              <span class="doc-card-tag">SVG Vector</span>
-            </div>
-            <div class="doc-preview-area">
-              <svg viewBox="0 0 110 32" width="110" height="32" fill="currentColor">
-                <circle cx="16" cy="16" r="12" fill="#E11D48"/>
-                <path d="M12 11H20M10 16H22M13 21H19" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
-                <text x="36" y="23" font-family="'Inter', sans-serif" font-weight="900" font-size="19" letter-spacing="-0.03em" fill="currentColor">OCBC</text>
-              </svg>
-            </div>
-            <div class="doc-code-footer">
-              <button class="btn-copy-code" onclick="copyComponentCode(this)"><span>&#128203;</span> Copy SVG</button>
-            </div>
-          </div>
-
-          <!-- UOB Bank -->
-          <div class="doc-card">
-            <div class="doc-card-header">
-              <span class="doc-card-title">UOB Bank Logo</span>
-              <span class="doc-card-tag">SVG Vector</span>
-            </div>
-            <div class="doc-preview-area">
-              <svg viewBox="0 0 110 32" width="110" height="32" fill="currentColor">
-                <rect x="8" y="8" width="3" height="16" fill="#0284C7"/>
-                <rect x="13" y="8" width="3" height="16" fill="#0284C7"/>
-                <rect x="18" y="8" width="3" height="16" fill="#E11D48"/>
-                <rect x="23" y="8" width="3" height="16" fill="#0284C7"/>
-                <text x="36" y="23" font-family="'Inter', sans-serif" font-weight="900" font-size="19" letter-spacing="-0.03em" fill="currentColor">UOB</text>
-              </svg>
-            </div>
-            <div class="doc-code-footer">
-              <button class="btn-copy-code" onclick="copyComponentCode(this)"><span>&#128203;</span> Copy SVG</button>
-            </div>
-          </div>
-
-          <!-- Trust Bank -->
-          <div class="doc-card">
-            <div class="doc-card-header">
-              <span class="doc-card-title">Trust Bank Logo</span>
-              <span class="doc-card-tag">SVG Vector</span>
-            </div>
-            <div class="doc-preview-area">
-              <svg viewBox="0 0 110 32" width="110" height="32" fill="currentColor">
-                <rect x="8" y="9" width="14" height="14" rx="3" fill="#0284C7"/>
-                <text x="32" y="23" font-family="'Inter', sans-serif" font-weight="800" font-size="19" fill="currentColor">trust</text>
-              </svg>
-            </div>
-            <div class="doc-code-footer">
-              <button class="btn-copy-code" onclick="copyComponentCode(this)"><span>&#128203;</span> Copy SVG</button>
-            </div>
-          </div>
-
-          <!-- Standard Chartered -->
-          <div class="doc-card">
-            <div class="doc-card-header">
-              <span class="doc-card-title">Standard Chartered Logo</span>
-              <span class="doc-card-tag">SVG Vector</span>
-            </div>
-            <div class="doc-preview-area">
-              <svg viewBox="0 0 130 32" width="130" height="32" fill="currentColor">
-                <path d="M12 9C15 9 17 11 17 14C17 18 10 18 10 22C10 24 12 25 15 25" stroke="#10B981" stroke-width="3" stroke-linecap="round" fill="none"/>
-                <path d="M18 9C21 9 23 11 23 14C23 18 16 18 16 22C16 24 18 25 21 25" stroke="#0284C7" stroke-width="3" stroke-linecap="round" fill="none"/>
-                <text x="32" y="16" font-family="'Inter', sans-serif" font-weight="700" font-size="10" fill="currentColor">standard</text>
-                <text x="32" y="26" font-family="'Inter', sans-serif" font-weight="700" font-size="10" fill="currentColor">chartered</text>
-              </svg>
-            </div>
-            <div class="doc-code-footer">
-              <button class="btn-copy-code" onclick="copyComponentCode(this)"><span>&#128203;</span> Copy SVG</button>
-            </div>
+          <div class="doc-code-footer">
+            <button class="btn-copy-code" onclick="copyComponentCode(this)">Copy HTML</button>
           </div>
         </div>
       </section>
 
 
       <!-- ==============================================================
-           4. BUTTONS & HERO ACTIONS
+           7. IOS BUTTONS
            ============================================================== -->
       <section class="doc-section" id="buttons">
         <div class="doc-section-header">
-          <h2 class="doc-section-title">&#9679; Buttons &amp; Touch Targets</h2>
-          <p class="doc-section-desc">Prominent 68px hero buttons, standard action buttons, bank toggles, and social actions.</p>
+          <h2 class="doc-section-title">&#9679; iOS Buttons (UIButton Configurations)</h2>
+          <p class="doc-section-desc">Prominent filled, tinted, gray, and hero action buttons conforming to Apple HIG touch targets.</p>
         </div>
 
         <div class="doc-grid">
-          <!-- Hero Primary -->
           <div class="doc-card">
             <div class="doc-card-header">
-              <span class="doc-card-title">Hero Button — Get Started</span>
-              <span class="doc-card-tag">68px · max 295px</span>
-            </div>
-            <div class="doc-preview-area">
-              <button class="btn btn-hero btn-hero-primary" style="width: 280px;">Get Started</button>
-            </div>
-            <div class="doc-code-footer">
-              <button class="btn-copy-code" onclick="copyComponentCode(this)"><span>&#128203;</span> Copy HTML</button>
-            </div>
-          </div>
-
-          <!-- Hero Outline -->
-          <div class="doc-card">
-            <div class="doc-card-header">
-              <span class="doc-card-title">Hero Button — Login</span>
-              <span class="doc-card-tag">68px · max 295px</span>
-            </div>
-            <div class="doc-preview-area">
-              <button class="btn btn-hero btn-hero-outline" style="width: 280px;">Login</button>
-            </div>
-            <div class="doc-code-footer">
-              <button class="btn-copy-code" onclick="copyComponentCode(this)"><span>&#128203;</span> Copy HTML</button>
-            </div>
-          </div>
-
-          <!-- Standard Primary & Emerald -->
-          <div class="doc-card">
-            <div class="doc-card-header">
-              <span class="doc-card-title">Primary &amp; Emerald Action Buttons</span>
-              <span class="doc-card-tag">50px height</span>
+              <span class="doc-card-title">Prominent Filled &amp; Tinted Buttons</span>
+              <span class="doc-card-tag">UIButton.Configuration</span>
             </div>
             <div class="doc-preview-area" style="gap: 12px; width: 100%;">
               <button class="btn btn-primary" style="width: 240px;">Continue &rarr;</button>
               <button class="btn btn-emerald" style="width: 240px;">Finish Setup &rarr;</button>
-              <button class="btn btn-outline" style="width: 240px;">Back</button>
+              <button class="btn btn-outline" style="width: 240px;">Secondary Action</button>
             </div>
             <div class="doc-code-footer">
-              <button class="btn-copy-code" onclick="copyComponentCode(this)"><span>&#128203;</span> Copy HTML</button>
+              <button class="btn-copy-code" onclick="copyComponentCode(this)">Copy HTML</button>
             </div>
           </div>
 
-          <!-- Bank Connect Buttons -->
           <div class="doc-card">
             <div class="doc-card-header">
-              <span class="doc-card-title">Bank Connect Action</span>
-              <span class="doc-card-tag">.btn-bank-connect</span>
+              <span class="doc-card-title">iOS Hero Buttons (64px)</span>
+              <span class="doc-card-tag">.btn-hero</span>
             </div>
-            <div class="doc-preview-area" style="gap: 12px;">
-              <button class="btn-bank-connect">CONNECT</button>
-              <button class="btn-bank-connect connected">&#10003; CONNECTED</button>
-            </div>
-            <div class="doc-code-footer">
-              <button class="btn-copy-code" onclick="copyComponentCode(this)"><span>&#128203;</span> Copy HTML</button>
-            </div>
-          </div>
-
-          <!-- Social Buttons -->
-          <div class="doc-card">
-            <div class="doc-card-header">
-              <span class="doc-card-title">Social Action Buttons</span>
-              <span class="doc-card-tag">.social-action-btn</span>
-            </div>
-            <div class="doc-preview-area" style="gap: 8px; width: 100%;">
-              <button class="social-action-btn" style="width: 260px;">+ JOIN GROUP</button>
-              <div style="display: flex; gap: 8px; width: 260px;">
-                <button class="social-action-btn" style="flex: 1;">+ CONTACTS</button>
-                <button class="social-action-btn" style="flex: 1;">+ USERNAME</button>
-              </div>
+            <div class="doc-preview-area" style="gap: 12px; width: 100%;">
+              <button class="btn btn-hero btn-hero-primary">Get Started</button>
+              <button class="btn btn-hero btn-hero-outline">Login</button>
             </div>
             <div class="doc-code-footer">
-              <button class="btn-copy-code" onclick="copyComponentCode(this)"><span>&#128203;</span> Copy HTML</button>
-            </div>
-          </div>
-
-          <!-- Streak Pill & Cheer -->
-          <div class="doc-card">
-            <div class="doc-card-header">
-              <span class="doc-card-title">Streak &amp; Cheer Action Pills</span>
-              <span class="doc-card-tag">Badges &amp; Buttons</span>
-            </div>
-            <div class="doc-preview-area" style="gap: 12px;">
-              <div class="home-streak-pill">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                  <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/>
-                </svg>
-                98-DAY STREAK
-              </div>
-              <button class="btn-cheer">Cheer &#128079;</button>
-            </div>
-            <div class="doc-code-footer">
-              <button class="btn-copy-code" onclick="copyComponentCode(this)"><span>&#128203;</span> Copy HTML</button>
+              <button class="btn-copy-code" onclick="copyComponentCode(this)">Copy HTML</button>
             </div>
           </div>
         </div>
@@ -884,453 +1069,52 @@
 
 
       <!-- ==============================================================
-           5. FORM INPUTS & FLOATING OUTLINES
+           8. IOS SHEETS, ALERTS & DYNAMIC NOTIFICATIONS
            ============================================================== -->
-      <section class="doc-section" id="inputs">
+      <section class="doc-section" id="sheets">
         <div class="doc-section-header">
-          <h2 class="doc-section-title">&#9679; Form Inputs &amp; Floating Outlines</h2>
-          <p class="doc-section-desc">Uppercase floating labels with high-contrast hairline borders for mobile inputs.</p>
+          <h2 class="doc-section-title">&#9679; iOS Presentation (Sheets, Alerts &amp; Dynamic Island)</h2>
+          <p class="doc-section-desc">Apple sheet presentation detents with Grabber handle and Dynamic Island toasts.</p>
         </div>
 
         <div class="doc-grid">
-          <!-- Text Field -->
+          <!-- Detent Sheet -->
           <div class="doc-card">
             <div class="doc-card-header">
-              <span class="doc-card-title">Input Outline Box</span>
-              <span class="doc-card-tag">.input-outline-box</span>
-            </div>
-            <div class="doc-preview-area" style="width: 100%;">
-              <div class="input-outline-box" style="width: 280px;">
-                <span class="input-outline-label">PURPOSE</span>
-                <input type="text" class="input-outline-field" value="Buy a MacBook Pro">
-              </div>
-            </div>
-            <div class="doc-code-footer">
-              <button class="btn-copy-code" onclick="copyComponentCode(this)"><span>&#128203;</span> Copy HTML</button>
-            </div>
-          </div>
-
-          <!-- 2-Column Grid -->
-          <div class="doc-card">
-            <div class="doc-card-header">
-              <span class="doc-card-title">Two-Column Form Grid</span>
-              <span class="doc-card-tag">.form-grid-2</span>
-            </div>
-            <div class="doc-preview-area" style="width: 100%;">
-              <div class="form-grid-2" style="width: 280px;">
-                <div class="input-outline-box">
-                  <span class="input-outline-label">GOAL AMOUNT</span>
-                  <input type="text" class="input-outline-field" value="$2,000">
-                </div>
-                <div class="input-outline-box">
-                  <span class="input-outline-label">GOAL DATE</span>
-                  <input type="text" class="input-outline-field" value="12/2026">
-                </div>
-              </div>
-            </div>
-            <div class="doc-code-footer">
-              <button class="btn-copy-code" onclick="copyComponentCode(this)"><span>&#128203;</span> Copy HTML</button>
-            </div>
-          </div>
-
-          <!-- Category Trigger Dropdown -->
-          <div class="doc-card">
-            <div class="doc-card-header">
-              <span class="doc-card-title">Category Dropdown Trigger</span>
-              <span class="doc-card-tag">.category-dropdown-trigger</span>
-            </div>
-            <div class="doc-preview-area" style="width: 100%;">
-              <div class="input-outline-box" style="width: 280px;">
-                <span class="input-outline-label">CATEGORY</span>
-                <div class="category-dropdown-trigger">
-                  <span class="category-dropdown-value">MUSIC</span>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                </div>
-              </div>
-            </div>
-            <div class="doc-code-footer">
-              <button class="btn-copy-code" onclick="copyComponentCode(this)"><span>&#128203;</span> Copy HTML</button>
-            </div>
-          </div>
-
-          <!-- Stepper Dots -->
-          <div class="doc-card">
-            <div class="doc-card-header">
-              <span class="doc-card-title">Setup Stepper Indicator</span>
-              <span class="doc-card-tag">.step-stepper</span>
-            </div>
-            <div class="doc-preview-area">
-              <div class="step-stepper">
-                <div class="step-dot done"></div>
-                <div class="step-dot active"></div>
-                <div class="step-dot"></div>
-                <div class="step-dot"></div>
-              </div>
-            </div>
-            <div class="doc-code-footer">
-              <button class="btn-copy-code" onclick="copyComponentCode(this)"><span>&#128203;</span> Copy HTML</button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-      <!-- ==============================================================
-           6. CARDS, BADGES & LISTS
-           ============================================================== -->
-      <section class="doc-section" id="cards">
-        <div class="doc-section-header">
-          <h2 class="doc-section-title">&#9679; Cards, Badges &amp; Feed Lists</h2>
-          <p class="doc-section-desc">Reusable cards for metrics, feed items, recurring charges, and profile rows.</p>
-        </div>
-
-        <div class="doc-grid">
-          <!-- Saved Month Card -->
-          <div class="doc-card">
-            <div class="doc-card-header">
-              <span class="doc-card-title">Saved Month Metric Card</span>
-              <span class="doc-card-tag">.saved-metric-card</span>
-            </div>
-            <div class="doc-preview-area" style="width: 100%;">
-              <div class="saved-metric-card" style="width: 280px;">
-                <div>
-                  <div class="saved-label">SAVED · MONTH</div>
-                  <div class="saved-value">$190</div>
-                </div>
-                <div class="ontrack-badge">
-                  <span>&uarr;</span> on track
-                </div>
-              </div>
-            </div>
-            <div class="doc-code-footer">
-              <button class="btn-copy-code" onclick="copyComponentCode(this)"><span>&#128203;</span> Copy HTML</button>
-            </div>
-          </div>
-
-          <!-- Nudge Banner Pill -->
-          <div class="doc-card">
-            <div class="doc-card-header">
-              <span class="doc-card-title">Nudge Banner Pill</span>
-              <span class="doc-card-tag">.nudge-pill-banner</span>
-            </div>
-            <div class="doc-preview-area" style="width: 100%;">
-              <div class="nudge-pill-banner" style="width: 280px;">
-                <div class="nudge-left">
-                  <span class="nudge-icon">!</span>
-                  <span>$2.60 left today. Plan your dinner &rsaquo;</span>
-                </div>
-              </div>
-            </div>
-            <div class="doc-code-footer">
-              <button class="btn-copy-code" onclick="copyComponentCode(this)"><span>&#128203;</span> Copy HTML</button>
-            </div>
-          </div>
-
-          <!-- Latest Expense Item -->
-          <div class="doc-card">
-            <div class="doc-card-header">
-              <span class="doc-card-title">Latest Expense Item Row</span>
-              <span class="doc-card-tag">.latest-expense-item</span>
-            </div>
-            <div class="doc-preview-area" style="width: 100%;">
-              <div class="latest-expense-item" style="width: 280px; box-sizing: border-box;">
-                <div class="expense-left-meta">
-                  <div class="expense-avatar-box">BT</div>
-                  <div>
-                    <div class="expense-title">Bubble tea</div>
-                    <div class="expense-subtitle">Grab · 6:40pm</div>
-                  </div>
-                </div>
-                <div class="expense-right-amount">$3.40</div>
-              </div>
-            </div>
-            <div class="doc-code-footer">
-              <button class="btn-copy-code" onclick="copyComponentCode(this)"><span>&#128203;</span> Copy HTML</button>
-            </div>
-          </div>
-
-          <!-- Social Buddy Row -->
-          <div class="doc-card">
-            <div class="doc-card-header">
-              <span class="doc-card-title">Social Friend Row with Cheer</span>
-              <span class="doc-card-tag">.social-user-item</span>
-            </div>
-            <div class="doc-preview-area" style="width: 100%;">
-              <div class="social-user-item" style="width: 280px; box-sizing: border-box;">
-                <div class="social-left-info">
-                  <div class="social-avatar">MT</div>
-                  <div>
-                    <div class="social-name">Marcus Tan</div>
-                    <div class="social-sub">42-day streak &middot; on track</div>
-                  </div>
-                </div>
-                <button class="btn-cheer">Cheer &#128079;</button>
-              </div>
-            </div>
-            <div class="doc-code-footer">
-              <button class="btn-copy-code" onclick="copyComponentCode(this)"><span>&#128203;</span> Copy HTML</button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-      <!-- ==============================================================
-           7. DATA VISUALIZATIONS & CIRCULAR GAUGE
-           ============================================================== -->
-      <section class="doc-section" id="dataviz">
-        <div class="doc-section-header">
-          <h2 class="doc-section-title">&#9679; Data Visualizations &amp; SVG Gauges</h2>
-          <p class="doc-section-desc">Interactive SVG circular gauge with dynamic stroke-dashoffset, conic donut chart, and weekly bar charts.</p>
-        </div>
-
-        <div class="doc-grid">
-          <!-- Dynamic Circular Gauge -->
-          <div class="doc-card">
-            <div class="doc-card-header">
-              <span class="doc-card-title">Dynamic Circular Budget Gauge</span>
-              <span class="doc-card-tag">SVG 220x220</span>
-            </div>
-            <div class="doc-preview-area">
-              <div class="hero-ring-wrapper" style="margin: 0; padding: 0;">
-                <div class="ring-svg-container" style="width: 180px; height: 180px;">
-                  <svg class="ring-svg" viewBox="0 0 220 220">
-                    <circle class="ring-bg-track" cx="110" cy="110" r="100"/>
-                    <circle class="ring-fill-bar" id="doc-ring-fill" cx="110" cy="110" r="100" stroke-dasharray="628.3" stroke-dashoffset="82" style="stroke: var(--sn-emerald-500);"/>
-                  </svg>
-                  <div class="ring-center-content">
-                    <div class="ring-eyebrow">SPENT TODAY</div>
-                    <div class="ring-big-num" id="doc-ring-num" style="font-size: 26px;">$17.40</div>
-                    <div class="ring-diff-sub" id="doc-ring-diff" style="font-size: 10px;">$2.60 under $20 limit</div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Interactive Slider to test states -->
-              <div class="gauge-slider-wrap">
-                <div style="display: flex; justify-content: space-between; font-size: 11px; font-weight: 700;">
-                  <span>Test Spent Amount:</span>
-                  <span id="slider-val-label">$17.40 / $20.00</span>
-                </div>
-                <input type="range" id="doc-gauge-slider" min="0" max="30" step="0.5" value="17.4" style="width: 100%;">
-              </div>
-            </div>
-            <div class="doc-code-footer">
-              <button class="btn-copy-code" onclick="copyComponentCode(this)"><span>&#128203;</span> Copy SVG &amp; Math</button>
-            </div>
-          </div>
-
-          <!-- Conic Donut Chart -->
-          <div class="doc-card">
-            <div class="doc-card-header">
-              <span class="doc-card-title">5-Category Conic Donut Chart</span>
-              <span class="doc-card-tag">CSS Conic-Gradient</span>
-            </div>
-            <div class="doc-preview-area">
-              <div class="donut-chart-wrap">
-                <div class="insights-donut">
-                  <div class="insights-donut-hole">
-                    <span>$584</span>
-                  </div>
-                </div>
-              </div>
-              <div class="insights-cat-tags" style="margin-top: 16px;">
-                <span class="cat-tag-pill food">Food 34%</span>
-                <span class="cat-tag-pill transport">Transport 22%</span>
-                <span class="cat-tag-pill shopping">Shop 20%</span>
-              </div>
-            </div>
-            <div class="doc-code-footer">
-              <button class="btn-copy-code" onclick="copyComponentCode(this)"><span>&#128203;</span> Copy HTML</button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-      <!-- ==============================================================
-           8. NAVIGATION & TAB BAR
-           ============================================================== -->
-      <section class="doc-section" id="navigation">
-        <div class="doc-section-header">
-          <h2 class="doc-section-title">&#9679; Bottom Navigation Bar</h2>
-          <p class="doc-section-desc">Fixed iOS 5-tab bar with elevated center (+) Quick Add button.</p>
-        </div>
-
-        <div class="doc-card" style="max-width: 480px;">
-          <div class="doc-card-header">
-            <span class="doc-card-title">5-Tab Navigation Bar</span>
-            <span class="doc-card-tag">.bottom-nav-bar</span>
-          </div>
-          <div class="doc-preview-area phone-frame" style="background: var(--sn-bg-canvas);">
-            <nav class="bottom-nav-bar" style="position: relative; width: 100%; border-radius: 12px;">
-              <button class="nav-tab-btn active">
-                <svg class="nav-tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                </svg>
-                <span>Home</span>
-              </button>
-              <button class="nav-tab-btn">
-                <svg class="nav-tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                  <line x1="18" y1="20" x2="18" y2="10"/>
-                  <line x1="12" y1="20" x2="12" y2="4"/>
-                  <line x1="6" y1="20" x2="6" y2="14"/>
-                </svg>
-                <span>Insights</span>
-              </button>
-              <button class="nav-tab-btn nav-center-add">
-                <div class="nav-add-circle">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8">
-                    <line x1="12" y1="5" x2="12" y2="19"/>
-                    <line x1="5" y1="12" x2="19" y2="12"/>
-                  </svg>
-                </div>
-                <span style="margin-top: 2px;">Add</span>
-              </button>
-              <button class="nav-tab-btn">
-                <svg class="nav-tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                  <circle cx="9" cy="7" r="4"/>
-                </svg>
-                <span>Social</span>
-              </button>
-              <button class="nav-tab-btn">
-                <svg class="nav-tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                  <circle cx="12" cy="12" r="3"/>
-                  <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
-                </svg>
-                <span>Settings</span>
-              </button>
-            </nav>
-          </div>
-          <div class="doc-code-footer">
-            <button class="btn-copy-code" onclick="copyComponentCode(this)"><span>&#128203;</span> Copy HTML</button>
-          </div>
-        </div>
-      </section>
-
-
-      <!-- ==============================================================
-           9. MODALS, SHEETS & TOASTS
-           ============================================================== -->
-      <section class="doc-section" id="modals">
-        <div class="doc-section-header">
-          <h2 class="doc-section-title">&#9679; Modals, Sheets &amp; Toasts</h2>
-          <p class="doc-section-desc">Interactive bottom sheets, bank authorization splashes, and notification toasts.</p>
-        </div>
-
-        <div class="doc-grid">
-          <!-- Bottom Sheet Preview -->
-          <div class="doc-card">
-            <div class="doc-card-header">
-              <span class="doc-card-title">Bottom Sheet Container</span>
-              <span class="doc-card-tag">.bottom-sheet</span>
+              <span class="doc-card-title">iOS Half-Sheet Modal</span>
+              <span class="doc-card-tag">UISheetPresentationController</span>
             </div>
             <div class="doc-preview-area phone-frame">
-              <div class="bottom-sheet" style="position: relative; transform: none; width: 100%; box-sizing: border-box; border: 1px solid var(--sn-border-light);">
+              <div class="bottom-sheet" style="position: relative; transform: none; width: 100%; border: 0.5px solid var(--ios-separator); box-sizing: border-box;">
                 <div class="sheet-handle-bar"></div>
-                <div class="sheet-title">Select Category</div>
-                <div class="sheet-subtitle">Pick the category for this recurring charge</div>
-                <div class="category-select-list" style="margin-top: 10px;">
-                  <div class="category-option-item">
-                    <span>MUSIC</span>
-                    <span style="color: var(--sn-cat-shopping);">&#9835;</span>
-                  </div>
-                  <div class="category-option-item">
-                    <span>RENT</span>
-                    <span style="color: var(--sn-cat-bills);">&#8962;</span>
-                  </div>
-                </div>
+                <div class="sheet-title">Add Transaction</div>
+                <div class="sheet-subtitle">Log spending against your daily limit</div>
+                <button class="btn btn-primary" style="width: 100%; height: 46px; font-size: 16px; margin-top: 10px;">Record Expense</button>
               </div>
             </div>
             <div class="doc-code-footer">
-              <button class="btn-copy-code" onclick="copyComponentCode(this)"><span>&#128203;</span> Copy HTML</button>
+              <button class="btn-copy-code" onclick="copyComponentCode(this)">Copy HTML</button>
             </div>
           </div>
 
-          <!-- Toast Notice -->
+          <!-- Dynamic Island Toast -->
           <div class="doc-card">
             <div class="doc-card-header">
-              <span class="doc-card-title">Toast Notification Banner</span>
+              <span class="doc-card-title">iOS Dynamic Island Toast</span>
               <span class="doc-card-tag">.toast-notice</span>
             </div>
             <div class="doc-preview-area">
-              <div class="toast-notice show" style="position: relative; bottom: auto; left: auto; transform: none;">
-                <span>&#9679;</span> Saved $4.20 for Iced Latte
+              <div class="toast-notice show" style="position: relative; top: auto; left: auto; transform: none;">
+                <span style="color: var(--sn-emerald-500);">&#10003;</span>
+                <span>Linked DBS Bank Account</span>
               </div>
-              <button class="btn btn-outline" style="margin-top: 16px; height: 38px; font-size: 13px;" onclick="window.App ? window.App.showToast('Test Toast Notification') : showDocToast('Test Toast Notification')">
+              <button class="btn btn-outline" style="margin-top: 16px; height: 38px; font-size: 13px;" onclick="showDocToast('Testing iOS Dynamic Notification')">
                 Trigger Live Toast
               </button>
             </div>
             <div class="doc-code-footer">
-              <button class="btn-copy-code" onclick="copyComponentCode(this)"><span>&#128203;</span> Copy HTML</button>
+              <button class="btn-copy-code" onclick="copyComponentCode(this)">Copy HTML</button>
             </div>
-          </div>
-        </div>
-      </section>
-
-
-      <!-- ==============================================================
-           10. SCREEN BOILERPLATE GENERATOR
-           ============================================================== -->
-      <section class="doc-section" id="boilerplates">
-        <div class="doc-section-header">
-          <h2 class="doc-section-title">&#9679; Screen Boilerplate Generator</h2>
-          <p class="doc-section-desc">Create a new screen in 2 files without any merge conflicts. Copy this starter code into your new folder.</p>
-        </div>
-
-        <div class="doc-card">
-          <div class="doc-card-header">
-            <span class="doc-card-title">JavaScript Screen Module (src/screens/my-screen/my-screen.js)</span>
-            <button class="btn-copy-code" onclick="copySnippet(document.getElementById('screen-js-snippet').innerText, 'Screen JS Boilerplate')"><span>&#128203;</span> Copy JS</button>
-          </div>
-          <div style="padding: 16px;">
-            <pre class="code-snippet-box" id="screen-js-snippet"><code>/**
- * Screen: My Feature Module
- */
-
-window.App = window.App || {};
-
-window.App.registerScreen('my-feature', {
-  id: 'screen-my-feature',
-  title: 'My Feature Screen',
-
-  render() {
-    return `
-      &lt;section class="screen" id="screen-my-feature"&gt;
-        &lt;div class="screen-scrollable-body"&gt;
-          &lt;header class="home-topbar"&gt;
-            &lt;div class="home-brand-title"&gt;My Feature&lt;/div&gt;
-          &lt;/header&gt;
-
-          &lt;h2 class="tab-page-title"&gt;Feature Title&lt;/h2&gt;
-          &lt;p class="tab-page-subtitle"&gt;Feature description here&lt;/p&gt;
-
-          &lt;!-- Your custom components go here --&gt;
-        &lt;/div&gt;
-
-        &lt;footer class="screen-footer-actions"&gt;
-          &lt;button class="btn btn-outline" data-goto="screen-home"&gt;Back&lt;/button&gt;
-          &lt;button class="btn btn-primary" id="btn-save-feature"&gt;Save&lt;/button&gt;
-        &lt;/footer&gt;
-      &lt;/section&gt;
-    `;
-  },
-
-  init() {
-    // Bind your button clicks and forms here
-    const saveBtn = document.getElementById('btn-save-feature');
-    if (saveBtn) {
-      saveBtn.addEventListener('click', () =&gt; {
-        window.App.showToast('Feature saved successfully!');
-      });
-    }
-  },
-
-  onEnter() {
-    // Lifecycle hook: called every time user navigates to this screen
-  }
-});</code></pre>
           </div>
         </div>
       </section>
@@ -1340,24 +1124,20 @@ window.App.registerScreen('my-feature', {
 
   <!-- Shared Toast for asset.html -->
   <div class="doc-toast" id="doc-toast">
-    <span style="color: var(--sn-emerald-500);">&#10003;</span>
+    <span style="color: var(--sn-emerald-500); font-weight: 800;">&#10003;</span>
     <span id="doc-toast-msg">Copied to clipboard!</span>
   </div>
 
   <script>
-    // Copy Code Helper
+    // Copy Snippet Helper
     function copyComponentCode(button) {
       const card = button.closest('.doc-card');
       const previewArea = card.querySelector('.doc-preview-area');
       if (!previewArea) return;
 
-      // Extract inner HTML cleanly
       let code = previewArea.innerHTML.trim();
-      // Remove doc-only slider controls if present
-      code = code.replace(/<div class="gauge-slider-wrap">[\s\S]*?<\/div>/, '');
-
       navigator.clipboard.writeText(code).then(() => {
-        showDocToast('Copied component HTML to clipboard!');
+        showDocToast('Copied iOS component HTML to clipboard!');
       }).catch(() => {
         prompt('Copy HTML code:', code);
       });
@@ -1367,11 +1147,11 @@ window.App.registerScreen('my-feature', {
       navigator.clipboard.writeText(text).then(() => {
         showDocToast(`Copied ${label} to clipboard!`);
       }).catch(() => {
-        prompt('Copy snippet:', text);
+        prompt('Copy code:', text);
       });
     }
 
-    // Toast feedback
+    // Toast Feedback
     let toastTimer;
     function showDocToast(msg) {
       const toast = document.getElementById('doc-toast');
@@ -1383,10 +1163,10 @@ window.App.registerScreen('my-feature', {
       clearTimeout(toastTimer);
       toastTimer = setTimeout(() => {
         toast.classList.remove('show');
-      }, 2200);
+      }, 2000);
     }
 
-    // Theme Switcher for asset.html
+    // Theme Switcher (Light / Dark iOS Appearance)
     const themeBtn = document.getElementById('doc-theme-toggle');
     const themeIcon = document.getElementById('theme-btn-icon');
     const themeLabel = document.getElementById('theme-btn-label');
@@ -1396,44 +1176,16 @@ window.App.registerScreen('my-feature', {
       const nextTheme = isDark ? 'light' : 'dark';
       document.body.setAttribute('data-theme', nextTheme);
       themeIcon.innerHTML = nextTheme === 'dark' ? '&#9788;' : '&#9790;';
-      themeLabel.textContent = nextTheme === 'dark' ? 'Light Mode' : 'Dark Mode';
-      showDocToast(`Switched library to ${nextTheme} mode`);
+      themeLabel.textContent = nextTheme === 'dark' ? 'Light Appearance' : 'Dark Appearance';
+      showDocToast(`Switched to iOS ${nextTheme} appearance`);
     });
 
-    // Real-time Interactive Circular Gauge Slider
-    const gaugeSlider = document.getElementById('doc-gauge-slider');
-    const ringFill = document.getElementById('doc-ring-fill');
-    const ringNum = document.getElementById('doc-ring-num');
-    const ringDiff = document.getElementById('doc-ring-diff');
-    const sliderLabel = document.getElementById('slider-val-label');
-
-    if (gaugeSlider && ringFill) {
-      gaugeSlider.addEventListener('input', (e) => {
-        const spent = parseFloat(e.target.value);
-        const limit = 20.00;
-        const remaining = limit - spent;
-        const circumference = 628.3;
-        const ratio = Math.min(spent / limit, 1);
-        const offset = circumference - (ratio * circumference);
-
-        ringFill.style.strokeDashoffset = offset;
-        ringNum.textContent = `$${spent.toFixed(2)}`;
-        sliderLabel.textContent = `$${spent.toFixed(2)} / $${limit.toFixed(2)}`;
-
-        if (remaining >= 0) {
-          if (ratio > 0.85) {
-            ringFill.style.stroke = 'var(--sn-amber-500)';
-            ringDiff.textContent = `$${remaining.toFixed(2)} under $${limit.toFixed(0)} limit (Warning)`;
-          } else {
-            ringFill.style.stroke = 'var(--sn-emerald-500)';
-            ringDiff.textContent = `$${remaining.toFixed(2)} under $${limit.toFixed(0)} limit`;
-          }
-        } else {
-          const over = Math.abs(remaining);
-          ringFill.style.stroke = 'var(--sn-rose-500)';
-          ringDiff.textContent = `$${over.toFixed(2)} over limit (Apply recovery)`;
-        }
-      });
+    // Segmented Control Switcher
+    function activateSegment(btn) {
+      const parent = btn.parentElement;
+      parent.querySelectorAll('.ios-segment-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      showDocToast(`Selected: ${btn.textContent}`);
     }
 
     // Real-time Search Filter
@@ -1441,7 +1193,7 @@ window.App.registerScreen('my-feature', {
     if (searchInput) {
       searchInput.addEventListener('input', (e) => {
         const term = e.target.value.toLowerCase().trim();
-        const cards = document.querySelectorAll('.doc-card, .color-swatch-card');
+        const cards = document.querySelectorAll('.doc-card, .color-swatch-card, .symbol-card');
 
         cards.forEach(card => {
           const text = card.textContent.toLowerCase();

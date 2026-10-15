@@ -1,5 +1,6 @@
 /**
  * Screen: Tab 2 — Insights Module
+ * Conforming to Apple iOS HIG Data Visualizations and Inset Grouped Tables
  */
 
 window.App = window.App || {};
@@ -11,111 +12,87 @@ window.App.registerScreen('insights', {
   render() {
     return `
       <section class="screen app-tab-screen" id="screen-insights">
-        <!-- Topbar -->
-        <header class="home-topbar">
-          <div class="home-brand-title">Savenow</div>
-          <div class="date-period-pill">SEP 2026</div>
+        <!-- iOS Navigation Bar -->
+        <header class="ios-nav-bar">
+          <span class="ios-nav-title">Insights</span>
+          <span style="font-size: 13px; font-weight: 600; color: var(--ios-gray-1);">SEP 2026</span>
         </header>
 
-        <h2 class="tab-page-title">Insights</h2>
-        <p class="tab-page-subtitle">Learn more about how you spend</p>
+        <div class="screen-scrollable-body" style="padding-top: 0;">
+          <h1 class="ios-large-title">Insights</h1>
 
-        <!-- Card 1: Categories Donut -->
-        <div class="insights-card">
-          <div class="insights-card-header">
-            <div class="insights-card-title-row">
-              <span class="insights-dot-icon">&#9678;</span>
-              <span class="insights-card-title">Categories</span>
-            </div>
-            <span class="insights-card-link">View all &rsaquo;</span>
+          <!-- iOS Segmented Control (Time Range) -->
+          <div class="ios-segmented-control" style="margin-bottom: 16px;">
+            <button class="ios-segment-btn">Week</button>
+            <button class="ios-segment-btn active">Month</button>
+            <button class="ios-segment-btn">Year</button>
           </div>
 
-          <div class="insights-breakdown-row">
-            <div>
-              <div class="insights-big-stat">$584</div>
-              <div class="insights-stat-sub">spent last month · August</div>
+          <!-- Card 1: Categories Donut (iOS Inset Group) -->
+          <div class="ios-section-header">CATEGORY SPENDING</div>
+          <div class="ios-inset-group">
+            <div style="padding: 16px;">
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+                <div>
+                  <div style="font-size: 32px; font-weight: 800; font-family: var(--font-mono); color: var(--sn-text-primary);">$584</div>
+                  <div style="font-size: 13px; color: var(--sn-text-secondary);">spent last month · August</div>
+                </div>
+                <!-- 5-Category Donut Chart -->
+                <div class="donut-chart-wrap">
+                  <div class="insights-donut">
+                    <div class="insights-donut-hole">
+                      <span>$584</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <div class="insights-cat-tags">
-                <span class="cat-tag-pill food">Food 34%</span>
-                <span class="cat-tag-pill transport">Transport 22%</span>
+                <span class="cat-tag-pill food" style="border-radius: var(--ios-radius-capsule);">Food 34%</span>
+                <span class="cat-tag-pill transport" style="border-radius: var(--ios-radius-capsule);">Transport 22%</span>
+                <span class="cat-tag-pill shopping" style="border-radius: var(--ios-radius-capsule);">Shop 20%</span>
               </div>
             </div>
+          </div>
 
-            <!-- 5-Category Donut Chart from design system -->
-            <div class="donut-chart-wrap">
-              <div class="insights-donut">
-                <div class="insights-donut-hole">
-                  <span>$584</span>
+          <!-- Card 2: Timeline Bar Chart (iOS Inset Group) -->
+          <div class="ios-section-header">WEEKLY PACE &amp; TIMELINE</div>
+          <div class="ios-inset-group">
+            <div style="padding: 16px;">
+              <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 12px;">
+                <div>
+                  <div style="font-size: 28px; font-weight: 800; color: var(--sn-emerald-600); font-family: var(--font-mono);">&minus;18%</div>
+                  <div style="font-size: 13px; color: var(--sn-text-secondary);">less than last week</div>
+                </div>
+
+                <div class="insights-bars-container">
+                  <div class="day-bar-col"><div class="day-bar" style="height: 28px;"></div><span>M</span></div>
+                  <div class="day-bar-col"><div class="day-bar" style="height: 38px;"></div><span>T</span></div>
+                  <div class="day-bar-col"><div class="day-bar" style="height: 22px;"></div><span>W</span></div>
+                  <div class="day-bar-col"><div class="day-bar highlight" style="height: 52px; background: var(--sn-emerald-500);"></div><span>T</span></div>
+                  <div class="day-bar-col"><div class="day-bar" style="height: 32px;"></div><span>F</span></div>
+                  <div class="day-bar-col"><div class="day-bar" style="height: 44px;"></div><span>S</span></div>
+                  <div class="day-bar-col"><div class="day-bar" style="height: 36px;"></div><span>S</span></div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <!-- Card 2: Timeline Bar Chart -->
-        <div class="insights-card">
-          <div class="insights-card-header">
-            <div class="insights-card-title-row">
-              <span class="insights-dot-icon">&#9646;</span>
-              <span class="insights-card-title">Timeline</span>
-            </div>
-            <span class="insights-card-link">7 days &rsaquo;</span>
-          </div>
-
-          <div class="insights-timeline-row">
-            <div>
-              <div class="insights-big-stat" style="color: var(--sn-emerald-600);">&minus;18%</div>
-              <div class="insights-stat-sub">less than last week</div>
-            </div>
-
-            <div class="insights-bars-container">
-              <div class="day-bar-col"><div class="day-bar" style="height: 28px;"></div><span>M</span></div>
-              <div class="day-bar-col"><div class="day-bar" style="height: 38px;"></div><span>T</span></div>
-              <div class="day-bar-col"><div class="day-bar" style="height: 22px;"></div><span>W</span></div>
-              <div class="day-bar-col"><div class="day-bar highlight" style="height: 52px;"></div><span>T</span></div>
-              <div class="day-bar-col"><div class="day-bar" style="height: 32px;"></div><span>F</span></div>
-              <div class="day-bar-col"><div class="day-bar" style="height: 44px;"></div><span>S</span></div>
-              <div class="day-bar-col"><div class="day-bar" style="height: 36px;"></div><span>S</span></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Card 3: Small purchases -->
-        <div class="insights-card">
-          <div class="insights-card-header">
-            <div class="insights-card-title-row">
-              <span class="insights-dot-icon">&#9670;</span>
-              <span class="insights-card-title">Small purchases</span>
-            </div>
-            <span class="insights-card-link">Details &rsaquo;</span>
-          </div>
-
-          <div class="insights-progress-row">
-            <div>
-              <div class="insights-big-stat">$64.10</div>
-              <div class="insights-stat-sub">27 purchases under $5 this week</div>
-            </div>
-            <div style="text-align: right; min-width: 110px;">
-              <div style="font-size: 19px; font-weight: 800; color: var(--sn-text-primary);">50%</div>
-              <div class="insights-bar-track">
-                <div class="insights-bar-fill" style="width: 50%;"></div>
+          <!-- Card 3: Small Purchases Tracker (iOS Inset Group) -->
+          <div class="ios-section-header">MICRO-SPENDING BEHAVIOR</div>
+          <div class="ios-inset-group">
+            <div style="padding: 16px;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <div>
+                  <div style="font-size: 22px; font-weight: 800; font-family: var(--font-mono);">$64.10</div>
+                  <div style="font-size: 13px; color: var(--sn-text-secondary);">27 purchases under $5 this week</div>
+                </div>
+                <div style="font-size: 17px; font-weight: 700; color: var(--ios-gray-1);">50%</div>
+              </div>
+              <div class="insights-bar-track" style="height: 8px; border-radius: 4px; background: var(--ios-fill);">
+                <div class="insights-bar-fill" style="width: 50%; height: 100%; border-radius: 4px; background: var(--sn-emerald-500);"></div>
               </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Card 4: Goal trade-off -->
-        <div class="insights-card">
-          <div class="insights-card-header">
-            <div class="insights-card-title-row">
-              <span class="insights-dot-icon">&#9671;</span>
-              <span class="insights-card-title">Goal trade-off</span>
-            </div>
-            <span class="insights-card-link">Details &rsaquo;</span>
-          </div>
-
-          <div>
-            <div class="insights-big-stat">4.5%</div>
-            <div class="insights-stat-sub">$90.00 of your $2,000 goal · August</div>
           </div>
         </div>
       </section>
@@ -123,6 +100,6 @@ window.App.registerScreen('insights', {
   },
 
   init() {
-    // Interactivity for Insights charts if needed
+    // Insights events if any
   }
 });
